@@ -1,102 +1,121 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import axiosWithAuth from "../../Middleware/axiosWithAuth";
 import { Alert, Spinner } from "reactstrap";
-
-const LoginWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  width: 30%;
-  height: 50%;
-  margin: 0 auto;
-  .img {
-    margin-top: 1%;
-  }
-`;
-
-const Input = styled.input`
-  font-family: "Quicksand", sans-serif;
-  font-size: 12px;
-  padding: 10px;
-  background: papayawhip;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  background-color: white;
-  border: black 1px solid;
-  width: 15rem;
-  margin: 8px;
-  border-radius: 5px;
-  color: black;
-`;
-
-const Button = styled.button`
-  font-family: "Lato", sans-serif;
-  width: 12rem;
-  height: 12%;
-  cursor: pointer;
-  background: transparent;
-  font-size: 16px;
-  border-radius: 4px;
-  color: #1f1e1e;
-  border: 2px solid #1f1e1e;
-  margin: 0 1em;
-  padding: 0.25em 1em;
-  transition: 0.5s all ease-out;
-  margin: 30px;
-  &:hover {
-    background-color: #1f1e1e;
-    color: #07fe20;
-  }
-`;
+import {
+  LoginWrapper,
+  Input,
+  Button,
+} from "../../Styles/formStyle.module.scss";
 
 function Register(props) {
+  const [Login, setLogin] = useState(true); //Login/Register Form State
   const [register, setRegister] = useState({
     username: "",
     password1: "",
     password2: "",
-  });
-  const [warningBox, setWarningBox] = useState(false);
-  const [error, setError] = useState("");
-  const [spinner, setSpinner] = useState(false);
+  }); //Form Value State
+  const [successAlert, setSuccessAlert] = useState(false); //Alert State
+  const [visibleWarning, setWarning] = useState(false); //Alert State
+  const [error, setError] = useState({ username: "", password1: "" }); //Error State
+  const [spinner, setSpin] = useState(false); //Spinner
 
   const handleChanges = (e) => {
     e.preventDefault();
+    onDismiss();
     setRegister({
       ...register,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("/registration/", register)
-      .then((res) => {
-        localStorage.setItem("key", res.data.key);
-        props.history.push("/login");
-      })
-      .catch((err) => {
-        console.log("Error Logging In", err);
-      });
+  const onDismiss = () => {
+    setSuccessAlert(false);
+    setWarning(false);
   };
+
+  const Register = () => {
+    setLogin(false);
+    setSuccessAlert(false);
+    setWarning(false);
+    setRegister({ username: "", password1: "", password2: "" });
+  };
+
+  const validateRegister = (props) => {
+    if (
+      props.password1 === "" &&
+      props.username === "" &&
+      props.password2 === ""
+    ) {
+      setError({
+        ...props,
+        username: "Username Cannot Be Blank",
+        password: "Passwords Cannot Be Blank",
+      });
+      return false;
+    }
+    if (!props.username) {
+      setError({ username: "Username Cannot Be Blank" });
+      return false;
+    }
+    if (!props.password1 && !props.password2) {
+      setError({ password: "Passwords Cannot Be Blank" });
+      return false;
+    }
+    if (!props.password1) {
+      setError({ password: "Passwords Cannot Be Blank" });
+      return false;
+    } else if (props.password1.length < 8) {
+      setError({ password: "Password Must Be At Least 5 Characters" });
+      return false;
+    }
+    if (props.password1 !== props.password2) {
+      setError({ password: "Passwords Do Not Match" });
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    console.log(props, e);
+    e.preventDefault();
+    const isValid = validateRegister(register);
+    console.log("registering...", register);
+    if (isValid) {
+      setSpin(true);
+      axiosWithAuth()
+        .post("/registration/", register) //Passes form valueto API
+        .then((res) => {
+          localStorage.setItem("key", res.data.key);
+          props.history.push("/login");
+          setLogin(true); //Sets Form State to Login
+          setSuccessAlert(true); //Makes Login Alert Visible
+          setSpin(false); //Turns off spin after successful register
+          // alert("Please sign in."); //Prompts User To Login
+        })
+        .catch((error) => {
+          console.log("There was an error:", error.message);
+          setRegister({ username: "", password1: "", password2: "" });
+          setSpin(false);
+          setWarning(true); //displays warning
+          setError(error.message);
+        })
+        .finally(() => {
+          setRegister({ username: "", password1: "", password2: "" });
+        });
+    } else {
+      setWarning(true);
+    }
+  };
+
   console.log("handlechanges", register);
   console.log(props);
   return (
-    <LoginWrapper>
+    <div className={LoginWrapper}>
       <h1>Create an Account</h1>
       <form className="form1" onSubmit={handleSubmit}>
         <p>Username</p>
-        {!register.username ? (
-          <Alert color="danger">Username is required</Alert>
-        ) : (
-          ""
-        )}
-        <Input
+        <input
+          className={Input}
           type="text"
           name="username"
           placeholder="username..."
@@ -104,24 +123,33 @@ function Register(props) {
           value={register.username}
         />
         <p>Password</p>
-        <Input
+        <input
+          className={Input}
           type="password"
           name="password1"
           placeholder="password..."
           value={register.password1}
           onChange={handleChanges}
         />
-        <p>Repeat Password</p>
-        <Input
+        <p>Confirm Password</p>
+        <input
+          className={Input}
           type="password"
           name="password2"
-          placeholder="password 2..."
+          placeholder="password..."
           value={register.password2}
           onChange={handleChanges}
         />
-        <button type="submit">Submit</button>
+        <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+          {error.username}
+          <br />
+          {error.password ? error.password : ""}
+        </Alert>
+        <button className={Button} type="submit">
+          Register
+        </button>
       </form>
-    </LoginWrapper>
+    </div>
   );
 }
 
