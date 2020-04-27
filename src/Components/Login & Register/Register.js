@@ -30,7 +30,7 @@ function Register(props) {
         props.history.push("/login");
       })
       .catch((err) => {
-        console.log("Error Logging In", err);
+        console.log("Error Register In", err);
       });
   };
   console.log("handlechanges", register);
@@ -67,7 +67,7 @@ function Register(props) {
           onChange={handleChanges}
         />
         <button className={Button} type="submit">
-          Submit
+          Register
         </button>
       </form>
     </div>
