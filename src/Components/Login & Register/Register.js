@@ -56,7 +56,6 @@ const Button = styled.button`
 function Register(props) {
   const [register, setRegister] = useState({
     username: "",
-    email: "",
     password1: "",
     password2: "",
   });
@@ -72,7 +71,7 @@ function Register(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/registration", register)
+      .post("/registration/", register)
       .then((res) => {
         localStorage.setItem("key", res.data.key);
         props.history.push("/login");
@@ -94,14 +93,6 @@ function Register(props) {
           placeholder="username..."
           onChange={handleChanges}
           value={register.username}
-        />
-        <p>Email</p>
-        <Input
-          type="email"
-          name="email"
-          placeholder="email..."
-          onChange={handleChanges}
-          value={register.email}
         />
         <p>Password</p>
         <Input
