@@ -65,7 +65,7 @@ function Register(props) {
       setError({ password: "Passwords Cannot Be Blank" });
       return false;
     } else if (props.password1.length < 8) {
-      setError({ password: "Password Must Be At Least 5 Characters" });
+      setError({ password: "Password Must Be At Least 8 Characters" });
       return false;
     }
     if (props.password1 !== props.password2) {
