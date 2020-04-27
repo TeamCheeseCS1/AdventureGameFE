@@ -9,7 +9,6 @@ import {
 function Register(props) {
   const [register, setRegister] = useState({
     username: "",
-    email: "",
     password1: "",
     password2: "",
   });
