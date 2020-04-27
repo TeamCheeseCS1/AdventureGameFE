@@ -8,17 +8,14 @@ import {
 } from "../../Styles/formStyle.module.scss";
 
 function Register(props) {
-  const [Login, setLogin] = useState(true); //Login/Register Form State
   const [register, setRegister] = useState({
     username: "",
     password1: "",
     password2: "",
-  }); //Form Value State
-  const [successAlert, setSuccessAlert] = useState(false); //Alert State
-  const [visibleWarning, setWarning] = useState(false); //Alert State
-  const [error, setError] = useState({ username: "", password1: "" }); //Error State
-  const [spinner, setSpin] = useState(false); //Spinner
-
+  });
+  const [visibleWarning, setWarning] = useState(false);
+  const [error, setError] = useState({ username: "", password1: "" });
+  const [spinner, setSpin] = useState(false);
   const handleChanges = (e) => {
     e.preventDefault();
     onDismiss();
@@ -33,12 +30,14 @@ function Register(props) {
     setWarning(false);
   };
 
-  const Register = () => {
-    setLogin(false);
-    setSuccessAlert(false);
-    setWarning(false);
-    setRegister({ username: "", password1: "", password2: "" });
-  };
+  // const Register = () => {
+  //   setLogin(false);
+  //   setSuccessAlert(false);
+  //   setWarning(false);
+  //   setRegister({ username: "", password1: "", password2: "" });
+  // };
+
+  // ^May use this for spinner if we decide to implement it
 
   const validateRegister = (props) => {
     if (
@@ -83,20 +82,19 @@ function Register(props) {
     if (isValid) {
       setSpin(true);
       axiosWithAuth()
-        .post("/registration/", register) //Passes form valueto API
+        .post("/registration/", register)
         .then((res) => {
           localStorage.setItem("key", res.data.key);
           props.history.push("/login");
-          setLogin(true); //Sets Form State to Login
-          setSuccessAlert(true); //Makes Login Alert Visible
-          setSpin(false); //Turns off spin after successful register
-          // alert("Please sign in."); //Prompts User To Login
+          setLogin(true);
+          setSuccessAlert(true);
+          setSpin(false);
         })
         .catch((error) => {
           console.log("There was an error:", error.message);
           setRegister({ username: "", password1: "", password2: "" });
           setSpin(false);
-          setWarning(true); //displays warning
+          setWarning(true);
           setError(error.message);
         })
         .finally(() => {
