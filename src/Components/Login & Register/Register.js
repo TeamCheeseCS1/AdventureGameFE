@@ -8,11 +8,13 @@ import {
 } from "../../Styles/formStyle.module.scss";
 
 function Register(props) {
+  const [Login, setLogin] = useState(true);
   const [register, setRegister] = useState({
     username: "",
     password1: "",
     password2: "",
   });
+  const [successAlert, setSuccessAlert] = useState(false);
   const [visibleWarning, setWarning] = useState(false);
   const [error, setError] = useState({ username: "", password1: "" });
   const [spinner, setSpin] = useState(false);
@@ -46,7 +48,6 @@ function Register(props) {
       props.password2 === ""
     ) {
       setError({
-        ...props,
         username: "Username Cannot Be Blank",
         password: "Passwords Cannot Be Blank",
       });
@@ -94,7 +95,7 @@ function Register(props) {
           console.log("There was an error:", error.message);
           setRegister({ username: "", password1: "", password2: "" });
           setSpin(false);
-          setWarning(true);
+          setWarning(true); //displays warning
           setError(error.message);
         })
         .finally(() => {

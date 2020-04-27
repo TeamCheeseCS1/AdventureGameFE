@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Alert, Spinner } from "reactstrap";
 import {
   LoginWrapper,
   Input,
@@ -8,6 +9,10 @@ import axiosWithAuth from "../../Middleware/axiosWithAuth";
 
 function Login(props) {
   const [loginState, setLoginState] = useState({ username: "", password: "" });
+  const [successAlert, setSuccessAlert] = useState(false);
+  const [visibleWarning, setWarning] = useState(false);
+  const [error, setError] = useState({ username: "", password1: "" });
+  const [spinner, setSpin] = useState(false);
 
   const handleChanges = (e) => {
     e.preventDefault();
@@ -17,16 +22,52 @@ function Login(props) {
     });
   };
 
+  const validateRegister = (props) => {
+    if (props.password === "" && props.username === "") {
+      setError({
+        username: "Username Cannot Be Blank",
+        password: "Password Cannot Be Blank",
+      });
+      return false;
+    }
+    if (!props.username) {
+      setError({ username: "Username Cannot Be Blank" });
+      return false;
+    }
+    if (!props.password) {
+      setError({ password: "Password Cannot Be Blank" });
+      return false;
+    }
+    return true;
+  };
+
+  const onDismiss = () => {
+    setSuccessAlert(false);
+    setWarning(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("/login/", loginState)
-      .then((res) => {
-        localStorage.setItem("key", res.data.key);
-      })
-      .catch((err) => {
-        console.log("Error Logging In", err);
-      });
+    const isValid = validateRegister(loginState);
+    if (isValid) {
+      setSpin(true);
+      axiosWithAuth()
+        .post("/login/", loginState)
+        .then((res) => {
+          localStorage.setItem("key", res.data.key);
+        })
+        .catch((err) => {
+          console.log("Error Logging In", err);
+          setWarning(true);
+          setSpin(false);
+          setError("Wrong Username/Password");
+        })
+        .finally(() => {
+          setLoginState({ username: "", password: "" });
+        });
+    } else {
+      setWarning(true);
+    }
   };
 
   return (
@@ -52,7 +93,11 @@ function Login(props) {
           onChange={handleChanges}
           value={loginState.password}
         />
-
+        <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+          {error.username}
+          <br />
+          {error.password ? error.password : ""}
+        </Alert>
         <button type="submit" className={Button}>
           Login
         </button>
