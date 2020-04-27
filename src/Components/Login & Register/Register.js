@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import axiosWithAuth from "../../Middleware/axiosWithAuth";
+import { Alert, Spinner } from "reactstrap";
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -59,6 +60,9 @@ function Register(props) {
     password1: "",
     password2: "",
   });
+  const [warningBox, setWarningBox] = useState(false);
+  const [error, setError] = useState("");
+  const [spinner, setSpinner] = useState(false);
 
   const handleChanges = (e) => {
     e.preventDefault();
@@ -87,6 +91,11 @@ function Register(props) {
       <h1>Create an Account</h1>
       <form className="form1" onSubmit={handleSubmit}>
         <p>Username</p>
+        {!register.username ? (
+          <Alert color="danger">Username is required</Alert>
+        ) : (
+          ""
+        )}
         <Input
           type="text"
           name="username"
