@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../../Middleware/axiosWithAuth";
-import { Alert, Spinner } from "reactstrap";
+// import { Spinner } from "reactstrap";
 import {
   LoginWrapper,
   Input,
   Button,
+  RegisterStyles,
 } from "../../Styles/formStyle.module.scss";
+
+import NavBar from "../NavBar";
 
 function Register(props) {
   const [Login, setLogin] = useState(true);
@@ -49,7 +52,7 @@ function Register(props) {
     ) {
       setError({
         username: "Username Cannot Be Blank",
-        password: "Passwords Cannot Be Blank",
+        password: "Password Cannot Be Blank",
       });
       return false;
     }
@@ -58,11 +61,11 @@ function Register(props) {
       return false;
     }
     if (!props.password1 && !props.password2) {
-      setError({ password: "Passwords Cannot Be Blank" });
+      setError({ password: "Password Cannot Be Blank" });
       return false;
     }
     if (!props.password1) {
-      setError({ password: "Passwords Cannot Be Blank" });
+      setError({ password: "Password Cannot Be Blank" });
       return false;
     } else if (props.password1.length < 8) {
       setError({ password: "Password Must Be At Least 8 Characters" });
@@ -106,45 +109,48 @@ function Register(props) {
   console.log("handlechanges", register);
   console.log(props);
   return (
-    <div className={LoginWrapper}>
-      <h1>Create an Account</h1>
-      <form className="form1" onSubmit={handleSubmit}>
-        <p>Username</p>
-        <input
-          className={Input}
-          type="text"
-          name="username"
-          placeholder="username..."
-          onChange={handleChanges}
-          value={register.username}
-        />
-        <p>Password</p>
-        <input
-          className={Input}
-          type="password"
-          name="password1"
-          placeholder="password..."
-          value={register.password1}
-          onChange={handleChanges}
-        />
-        <p>Confirm Password</p>
-        <input
-          className={Input}
-          type="password"
-          name="password2"
-          placeholder="password..."
-          value={register.password2}
-          onChange={handleChanges}
-        />
-        <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
-          {error.username}
-          <br />
-          {error.password ? error.password : ""}
-        </Alert>
-        <button className={Button} type="submit">
-          Register
-        </button>
-      </form>
+    <div className={RegisterStyles}>
+      <NavBar props={props} />
+      <div className={LoginWrapper}>
+        <h1>Create an Account</h1>
+        <form className="form1" onSubmit={handleSubmit}>
+          <p>Username</p>
+          <input
+            className={Input}
+            type="text"
+            name="username"
+            placeholder="username..."
+            onChange={handleChanges}
+            value={register.username}
+          />
+          <p>Password</p>
+          <input
+            className={Input}
+            type="password"
+            name="password1"
+            placeholder="password..."
+            value={register.password1}
+            onChange={handleChanges}
+          />
+          <p>Confirm Password</p>
+          <input
+            className={Input}
+            type="password"
+            name="password2"
+            placeholder="password..."
+            value={register.password2}
+            onChange={handleChanges}
+          />
+          <div isOpen={visibleWarning} toggle={onDismiss}>
+            {error.username}
+            <br />
+            {error.password ? error.password : ""}
+          </div>
+          <button className={Button} type="submit">
+            Register
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

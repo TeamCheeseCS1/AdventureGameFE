@@ -1,32 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { GameNav, Nav } from "../Styles/formStyle.module.scss";
 
-const NavLinks = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: black 1px solid;
-`;
-
-const NavBar = (props) => {
+const NavBar = ({ props }) => {
   return (
     <div className="container-nav">
       <nav className="nav-bar">
         {props.history.location.pathname === "/play" ? (
-          <NavLinks>
-            <Link
-              onClick={() => window.localStorage.clear("token")}
-              to="/login"
-            >
+          <div className={GameNav}>
+            <p>Garbage Man Simulator 5000</p>
+            <Link onClick={() => window.localStorage.clear("key")} to="/login">
               logout
             </Link>
-          </NavLinks>
+          </div>
         ) : (
-          <NavLinks>
+          <div className={Nav}>
             <Link to="/login">Login</Link>
+            <p>Garbage Man Simulator 5000</p>
             <Link to="/registration">Registration</Link>
-          </NavLinks>
+          </div>
         )}
       </nav>
     </div>

@@ -1,5 +1,36 @@
 @import "./variables.module.scss";
+
+.LandingStyles {
+  height: 100vh;
+  color: $c;
+  background: $a;
+  font-family: $bit;
+  h1 {
+    margin: 0;
+    padding: 40vh 0 10px 0;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    a {
+      margin: 20px 150px 0 150px;
+      text-decoration: none;
+      color: $b;
+      &:hover {
+        color: $e;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
+.RegisterStyles {
+  background: $d;
+  height: 100vh;
+}
+
 .LoginWrapper {
+  font-family: $bit;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -7,14 +38,23 @@
   justify-content: center;
   width: 30%;
   height: 50%;
-  margin: 0 auto;
+  margin: 130px auto 0 auto;
   .img {
     margin-top: 1%;
+  }
+  h1 {
+    color: $b;
+  }
+  p {
+    color: $a;
+  }
+  div {
+    color: $e;
   }
 }
 
 .Input {
-  font-family: "Quicksand", sans-serif;
+  font-family: $bit;
   font-size: 12px;
   padding: 10px;
   background: papayawhip;
@@ -23,30 +63,79 @@
   flex-direction: column;
   align-content: center;
   background-color: white;
-  border: black 1px solid;
+  border: $b 1px solid;
   width: 15rem;
   margin: 8px;
   border-radius: 5px;
-  color: black;
+  color: $e;
 }
 
 .Button {
-  font-family: "Lato", sans-serif;
+  font-family: $bit;
   width: 12rem;
   height: 12%;
   cursor: pointer;
   background: transparent;
   font-size: 16px;
   border-radius: 4px;
-  color: #1f1e1e;
-  border: 2px solid #1f1e1e;
+  color: $b;
+  border: 2px solid $b;
   margin: 0 1em;
   padding: 0.25em 1em;
   transition: 0.5s all ease-out;
   margin: 30px;
   &:hover {
-    background-color: #1f1e1e;
-    color: #07fe20;
+    background-color: $a;
+    color: $e;
+    border: 2px solid $e;
+  }
+}
+
+.GameNav {
+  display: flex;
+  justify-content: space-between;
+  font-family: $bit;
+  font-size: 0.75rem;
+  background: $a;
+  border-bottom: $c 1px solid;
+  a {
+    text-decoration: none;
+    color: $c;
+    padding: 5px 20px 5px 0;
+    margin: 10px;
+    &:hover {
+      color: $e;
+      transition: 0.3s;
+    }
+  }
+  p {
+    color: $c;
+    padding: 5px 0 5px 20px;
+    margin: 10px;
+  }
+}
+
+.Nav {
+  display: flex;
+  justify-content: space-between;
+  font-family: $bit;
+  font-size: 0.75rem;
+  background: $a;
+  border-bottom: $c 1px solid;
+  a {
+    text-decoration: none;
+    color: $c;
+    padding: 5px 20px 5px 0;
+    margin: 10px;
+    &:hover {
+      color: $e;
+      transition: 0.3s;
+    }
+  }
+  p {
+    color: $c;
+    padding: 5px 0 5px 20px;
+    margin: 10px;
   }
 }
 
@@ -54,30 +143,54 @@
   background-color: $d;
   color: $a;
   height: 100vh;
+  width: 100vw;
+  padding-top: 20px;
 }
 
 .ControlsStyles {
+  font-family: $bit;
+  font-size: 0.7rem;
   border-top: 1px solid $b;
   clear: both;
-  position: relative;
-  height: 100px;
+  position: absolute;
+  width: 100%;
   padding-top: 15px;
-  margin-top: 78vh;
+  margin-top: 75vh;
 }
 
 .ControlsDiv {
   display: flex;
   justify-content: space-around;
-  padding: 30px 20px 0 20px;
+  padding: 10px 20px 0 20px;
   color: $c;
+  p {
+    font-family: $bit;
+  }
+  button {
+    text-decoration: none;
+    background: none;
+    border: none;
+    color: $c;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: $e;
+      transition: 0.3s;
+    }
+  }
+}
+
+.ControlIcon {
+  font-size: 20px;
 }
 
 .HoverText {
   p {
     visibility: hidden;
     position: relative;
-    bottom: 70px;
     left: 50px;
+    margin-top: 0px;
     color: $a;
   }
   &:hover {
@@ -85,34 +198,60 @@
       transition: 0.4s;
       visibility: visible;
       position: relative;
-      bottom: 55px;
-      left: 45px;
+      margin-top: 0px;
+      left: 0px;
     }
   }
 }
 
 .RoomInfoStyles {
+  font-family: $bit;
+  font-size: 0.7rem;
   border-left: 1px solid $b;
   clear: both;
   position: absolute;
-  margin-left: 80vw;
-  padding-left: 50px;
-  height: 100px;
+  margin-left: 70vw;
+  padding-left: 5px;
+  margin-right: 50px;
+  height: 130px;
 }
 
 .RoomInfoDiv {
   display: flex;
   flex-direction: column;
-  padding: 20px 20px 0 20px;
+  padding: 20px 0px 0 0px;
   color: $c;
+  width: 100%;
+  div {
+    padding: 2.5px 15px 2.5px 15px;
+  }
+}
+
+.IpDiv {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  justify-content: space-between;
+  color: $b;
+  p {
+    color: $c;
+  }
+}
+
+.RoomTitles {
+  border-bottom: $c 1px solid;
 }
 
 .PusherFeedStyles {
+  font-family: $bit;
+  font-size: 0.7rem;
   border-right: 1px solid $b;
   clear: both;
   position: absolute;
-  margin-right: 80vw;
-  height: 100px;
+  margin-right: 70vw;
+  margin-left: 50px;
+  padding-right: 50px;
+  height: 130px;
 }
 
 .PusherFeedDiv {
@@ -120,4 +259,81 @@
   flex-direction: column;
   padding: 20px 20px 0 20px;
   color: $c;
+  div {
+    padding: 2.5px 0 2.5px 0;
+  }
+}
+
+.PusherFeedDiv:after {
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: linear-gradient(
+    to top,
+    rgba(41, 33, 31, 1) 35%,
+    rgba(255, 255, 255, 0) 90%
+  );
+  pointer-events: none;
+}
+
+.ChatStyles {
+  font-family: $bit;
+  font-size: 0.7rem;
+  clear: both;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 130px;
+  width: 100vw;
+}
+
+.ChatForm {
+  font-family: $bit;
+  font-size: 0.7rem;
+  input {
+    font-family: $bit;
+    font-size: 15px;
+    padding: 10px;
+    background: papayawhip;
+    border: none;
+    background-color: white;
+    border: $b 1px solid;
+    width: 15rem;
+    margin: 8px 0 0px 0;
+    border-radius: 5px;
+    color: $e;
+  }
+  button {
+    font-family: $bit;
+    width: 150px;
+    height: 35px;
+    cursor: pointer;
+    background: transparent;
+    font-size: 16px;
+    border-radius: 4px;
+    color: $b;
+    border: 2px solid $b;
+    padding: 0 5px 0 5px;
+    transition: 0.5s all ease-out;
+    margin: 40px 50px 0 40px;
+    &:hover {
+      background-color: $a;
+      color: $e;
+      border: 2px solid $e;
+    }
+  }
+}
+
+.MapStyles {
+  font-family: $bit;
+  font-size: 1rem;
+  color: $e;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  top: 40vh;
 }

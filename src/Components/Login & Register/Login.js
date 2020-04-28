@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Alert, Spinner } from "reactstrap";
+// import { Spinner } from "reactstrap";
 import {
   LoginWrapper,
   Input,
   Button,
+  RegisterStyles,
 } from "../../Styles/formStyle.module.scss";
 import axiosWithAuth from "../../Middleware/axiosWithAuth";
+
+import NavBar from "../NavBar";
 
 function Login(props) {
   const [loginState, setLoginState] = useState({ username: "", password: "" });
@@ -71,37 +74,40 @@ function Login(props) {
   };
 
   return (
-    <div className={LoginWrapper}>
-      <h1>Login to account</h1>
-      <form className="form1" onSubmit={handleSubmit}>
-        <p>Username</p>
-        <input
-          className={Input}
-          type="text"
-          name="username"
-          placeholder="Placeholder"
-          onChange={handleChanges}
-          value={loginState.username}
-        />
+    <div className={RegisterStyles}>
+      <NavBar props={props} />
+      <div className={LoginWrapper}>
+        <h1>Login to account</h1>
+        <form className="form1" onSubmit={handleSubmit}>
+          <p>Username</p>
+          <input
+            className={Input}
+            type="text"
+            name="username"
+            placeholder="Placeholder"
+            onChange={handleChanges}
+            value={loginState.username}
+          />
 
-        <p>Password</p>
-        <input
-          className={Input}
-          type="password"
-          name="password"
-          placeholder="password..."
-          onChange={handleChanges}
-          value={loginState.password}
-        />
-        <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
-          {error.username}
-          <br />
-          {error.password ? error.password : ""}
-        </Alert>
-        <button type="submit" className={Button}>
-          Login
-        </button>
-      </form>
+          <p>Password</p>
+          <input
+            className={Input}
+            type="password"
+            name="password"
+            placeholder="password..."
+            onChange={handleChanges}
+            value={loginState.password}
+          />
+          <div color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+            {error.username}
+            <br />
+            {error.password ? error.password : ""}
+          </div>
+          <button type="submit" className={Button}>
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
