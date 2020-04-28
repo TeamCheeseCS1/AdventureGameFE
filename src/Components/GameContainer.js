@@ -4,11 +4,12 @@ import { GameCont } from "../Styles/formStyle.module.scss";
 import Controls from "./HUD/Controls";
 import RoomInfo from "./HUD/RoomInfo";
 import PusherFeed from "./HUD/PusherFeed";
+import Map from "./Map";
 
 const GameContainer = () => {
   return (
     <div className={GameCont}>
-      <div>Game Page</div>
+      <Map />
       <RoomInfo />
       <PusherFeed />
       <Controls />

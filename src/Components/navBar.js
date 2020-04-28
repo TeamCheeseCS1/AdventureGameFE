@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { GameNav } from "../Styles/formStyle.module.scss";
 
 const NavLinks = styled.nav`
   display: flex;
@@ -14,14 +15,15 @@ const NavBar = (props) => {
     <div className="container-nav">
       <nav className="nav-bar">
         {props.history.location.pathname === "/play" ? (
-          <NavLinks>
+          <div className={GameNav}>
+            <p>Garbage Man Simulator 5000</p>
             <Link
               onClick={() => window.localStorage.clear("token")}
               to="/login"
             >
               logout
             </Link>
-          </NavLinks>
+          </div>
         ) : (
           <NavLinks>
             <Link to="/login">Login</Link>

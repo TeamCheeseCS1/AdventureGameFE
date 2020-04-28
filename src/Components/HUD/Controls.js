@@ -12,7 +12,7 @@ import {
   ControlsStyles,
   ControlsDiv,
   HoverText,
-  text,
+  ControlIcon,
 } from "../../Styles/formStyle.module.scss";
 
 const Controls = () => {
@@ -20,34 +20,48 @@ const Controls = () => {
     <div className={ControlsStyles}>
       <div>controls</div>
       <div className={ControlsDiv}>
-        <div className={HoverText}>
-          <FaHandRock />
-          <p>take</p>
-        </div>
-        <div className={HoverText}>
-          <FaHandPaper />
-          <p>drop</p>
-        </div>
-        <div className={HoverText}>
-          <FaArrowCircleLeft />
-          <p>move left</p>
-        </div>
-        <div className={HoverText}>
-          <FaArrowCircleUp />
-          <p>move up</p>
-        </div>
-        <div className={HoverText}>
-          <FaArrowCircleRight />
-          <p>move right</p>
-        </div>
-        <div className={HoverText}>
-          <FaArrowCircleDown />
-          <p>move down</p>
-        </div>
-        <div className={HoverText}>
-          <FaStore />
-          <p>store</p>
-        </div>
+        <a>
+          <div className={HoverText}>
+            <p>take item</p>
+            <FaHandRock className={ControlIcon} />
+          </div>
+        </a>
+        <a>
+          <div className={HoverText}>
+            <p>drop item</p>
+            <FaHandPaper className={ControlIcon} />
+          </div>
+        </a>
+        <a>
+          <div className={HoverText}>
+            <p>move left</p>
+            <FaArrowCircleLeft className={ControlIcon} />
+          </div>
+        </a>
+        <a>
+          <div className={HoverText}>
+            <p>move up</p>
+            <FaArrowCircleUp className={ControlIcon} />
+          </div>
+        </a>
+        <a>
+          <div className={HoverText}>
+            <p>move right</p>
+            <FaArrowCircleRight className={ControlIcon} />
+          </div>
+        </a>
+        <a>
+          <div className={HoverText}>
+            <p>move down</p>
+            <FaArrowCircleDown className={ControlIcon} />
+          </div>
+        </a>
+        <a>
+          <div className={HoverText}>
+            <p>shop</p>
+            <FaStore className={ControlIcon} />
+          </div>
+        </a>
       </div>
     </div>
   );
