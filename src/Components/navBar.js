@@ -10,7 +10,7 @@ const NavLinks = styled.nav`
   border-bottom: black 1px solid;
 `;
 
-const NavBar = (props) => {
+const NavBar = ({ props }) => {
   return (
     <div className="container-nav">
       <nav className="nav-bar">

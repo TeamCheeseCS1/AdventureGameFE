@@ -1,4 +1,29 @@
 @import "./variables.module.scss";
+
+.LandingStyles {
+  height: 100vh;
+  color: $c;
+  background: $a;
+  font-family: $bit;
+  h1 {
+    margin: 0;
+    padding: 40vh 0 10px 0;
+  }
+  div {
+    display: flex;
+    justify-content: center;
+    a {
+      margin: 20px 150px 0 150px;
+      text-decoration: none;
+      color: $b;
+      &:hover {
+        color: $e;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+
 .LoginWrapper {
   display: flex;
   flex-direction: column;
