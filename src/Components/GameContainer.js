@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GameCont } from "../Styles/formStyle.module.scss";
 import axiosWithAuth from "../Middleware/axiosWithAuth";
 
-import NavBar from "../Components/NavBar";
+import NavBar from "./NavBar";
 import Controls from "./HUD/Controls";
 import RoomInfo from "./HUD/RoomInfo";
 import PusherFeed from "./HUD/PusherFeed";
@@ -19,9 +19,6 @@ const GameContainer = (props) => {
   });
 
   useEffect(() => {
-    console.log(
-      `Authorization: Token ${localStorage.getItem(localStorage.key(0))}`
-    );
     axiosWithAuth()
       .get(
         "/adv/init/",
