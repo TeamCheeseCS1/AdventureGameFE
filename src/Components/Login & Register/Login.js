@@ -22,8 +22,6 @@ function Login(props) {
     });
   };
 
-  console.log("test");
-
   const validateRegister = (props) => {
     if (props.password === "" && props.username === "") {
       setError({
