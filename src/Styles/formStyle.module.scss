@@ -71,6 +71,25 @@
   color: $c;
 }
 
+.HoverText {
+  p {
+    visibility: hidden;
+    position: relative;
+    bottom: 70px;
+    left: 50px;
+    color: $a;
+  }
+  &:hover {
+    p {
+      transition: 1s;
+      visibility: visible;
+      position: relative;
+      bottom: 55px;
+      left: 45px;
+    }
+  }
+}
+
 .RoomInfoStyles {
   border-left: 1px solid $b;
   clear: both;
