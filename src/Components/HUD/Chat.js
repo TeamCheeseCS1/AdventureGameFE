@@ -25,7 +25,10 @@ const Chat = () => {
       .then((res) => {
         console.log(res.data);
       })
-      .catch((err) => err.message)
+      .catch((err) => {
+        setChat({ token: "", message: "" });
+        return err.message;
+      })
       .finally(() => setChat({ token: "", message: "" }));
   };
 
