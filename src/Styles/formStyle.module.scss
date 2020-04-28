@@ -61,14 +61,34 @@
   clear: both;
   position: relative;
   height: 100px;
-  margin-top: 80vh;
+  padding-top: 15px;
+  margin-top: 78vh;
 }
 
 .ControlsDiv {
   display: flex;
   justify-content: space-around;
-  padding: 20px 20px 0 20px;
+  padding: 30px 20px 0 20px;
   color: $c;
+}
+
+.HoverText {
+  p {
+    visibility: hidden;
+    position: relative;
+    bottom: 70px;
+    left: 50px;
+    color: $a;
+  }
+  &:hover {
+    p {
+      transition: 0.4s;
+      visibility: visible;
+      position: relative;
+      bottom: 55px;
+      left: 45px;
+    }
+  }
 }
 
 .RoomInfoStyles {
