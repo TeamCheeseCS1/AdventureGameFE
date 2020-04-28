@@ -1,10 +1,13 @@
 import React from "react";
-import { MapStyles } from "../Styles/formStyle.module.scss";
+import { MapStyles, CharStyles } from "../Styles/formStyle.module.scss";
 
-const Map = () => {
+const Map = ({ init }) => {
+  console.log(init);
   return (
     <div className={MapStyles}>
-      <h3>map</h3>
+      <div>
+        <img alt="nic cage" src="../download.png" className={CharStyles} />
+      </div>
     </div>
   );
 };

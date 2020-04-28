@@ -147,6 +147,14 @@
   padding-top: 20px;
 }
 
+.User {
+  position: absolute;
+  margin-top: 70vh;
+  margin-left: 15px;
+  font-family: $bit;
+  font-size: 0.7rem;
+}
+
 .ControlsStyles {
   font-family: $bit;
   font-size: 0.7rem;
@@ -295,24 +303,24 @@
   font-size: 0.7rem;
   input {
     font-family: $bit;
-    font-size: 15px;
+    font-size: 15%;
     padding: 10px;
     background: papayawhip;
     border: none;
     background-color: white;
     border: $b 1px solid;
-    width: 15rem;
-    margin: 8px 0 0px 0;
+    width: 15%;
+    margin: 15px 0 0px 0;
     border-radius: 5px;
     color: $e;
   }
   button {
     font-family: $bit;
-    width: 150px;
-    height: 35px;
+    width: 15%;
+    height: 30px;
     cursor: pointer;
     background: transparent;
-    font-size: 16px;
+    font-size: 50%;
     border-radius: 4px;
     color: $b;
     border: 2px solid $b;
@@ -335,5 +343,16 @@
   display: flex;
   justify-content: center;
   width: 100vw;
-  top: 40vh;
+  top: 37vh;
+  div {
+    border: $e 5px solid;
+    background: rgba(154, 16, 29, 0.1);
+    width: 15rem;
+    height: 15rem;
+  }
+}
+
+.CharStyles {
+  padding-top: 35%;
+  width: 50px;
 }
