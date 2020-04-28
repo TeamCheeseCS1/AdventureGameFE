@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Alert, Spinner } from "reactstrap";
+import { Spinner } from "reactstrap";
 import {
   LoginWrapper,
   Input,
   Button,
+  RegisterStyles,
 } from "../../Styles/formStyle.module.scss";
 import axiosWithAuth from "../../Middleware/axiosWithAuth";
 
@@ -73,7 +74,7 @@ function Login(props) {
   };
 
   return (
-    <div>
+    <div className={RegisterStyles}>
       <NavBar props={props} />
       <div className={LoginWrapper}>
         <h1>Login to account</h1>
@@ -97,11 +98,11 @@ function Login(props) {
             onChange={handleChanges}
             value={loginState.password}
           />
-          <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+          <div color="danger" isOpen={visibleWarning} toggle={onDismiss}>
             {error.username}
             <br />
             {error.password ? error.password : ""}
-          </Alert>
+          </div>
           <button type="submit" className={Button}>
             Login
           </button>

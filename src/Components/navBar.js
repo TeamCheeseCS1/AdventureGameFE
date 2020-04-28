@@ -1,14 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { GameNav } from "../Styles/formStyle.module.scss";
-
-const NavLinks = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: black 1px solid;
-`;
+import { GameNav, Nav } from "../Styles/formStyle.module.scss";
 
 const NavBar = ({ props }) => {
   return (
@@ -25,10 +17,11 @@ const NavBar = ({ props }) => {
             </Link>
           </div>
         ) : (
-          <NavLinks>
+          <div className={Nav}>
             <Link to="/login">Login</Link>
+            <p>Garbage Man Simulator 5000</p>
             <Link to="/registration">Registration</Link>
-          </NavLinks>
+          </div>
         )}
       </nav>
     </div>

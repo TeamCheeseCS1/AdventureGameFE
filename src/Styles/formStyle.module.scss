@@ -24,7 +24,13 @@
   }
 }
 
+.RegisterStyles {
+  background: $d;
+  height: 100vh;
+}
+
 .LoginWrapper {
+  font-family: $bit;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -32,14 +38,23 @@
   justify-content: center;
   width: 30%;
   height: 50%;
-  margin: 0 auto;
+  margin: 130px auto 0 auto;
   .img {
     margin-top: 1%;
+  }
+  h1 {
+    color: $b;
+  }
+  p {
+    color: $a;
+  }
+  div {
+    color: $e;
   }
 }
 
 .Input {
-  font-family: "Quicksand", sans-serif;
+  font-family: $bit;
   font-size: 12px;
   padding: 10px;
   background: papayawhip;
@@ -48,34 +63,59 @@
   flex-direction: column;
   align-content: center;
   background-color: white;
-  border: black 1px solid;
+  border: $b 1px solid;
   width: 15rem;
   margin: 8px;
   border-radius: 5px;
-  color: black;
+  color: $e;
 }
 
 .Button {
-  font-family: "Lato", sans-serif;
+  font-family: $bit;
   width: 12rem;
   height: 12%;
   cursor: pointer;
   background: transparent;
   font-size: 16px;
   border-radius: 4px;
-  color: #1f1e1e;
-  border: 2px solid #1f1e1e;
+  color: $b;
+  border: 2px solid $b;
   margin: 0 1em;
   padding: 0.25em 1em;
   transition: 0.5s all ease-out;
   margin: 30px;
   &:hover {
-    background-color: #1f1e1e;
-    color: #07fe20;
+    background-color: $a;
+    color: $e;
+    border: 2px solid $e;
   }
 }
 
 .GameNav {
+  display: flex;
+  justify-content: space-between;
+  font-family: $bit;
+  font-size: 0.75rem;
+  background: $a;
+  border-bottom: $c 1px solid;
+  a {
+    text-decoration: none;
+    color: $c;
+    padding: 5px 20px 5px 0;
+    margin: 10px;
+    &:hover {
+      color: $e;
+      transition: 0.3s;
+    }
+  }
+  p {
+    color: $c;
+    padding: 5px 0 5px 20px;
+    margin: 10px;
+  }
+}
+
+.Nav {
   display: flex;
   justify-content: space-between;
   font-family: $bit;

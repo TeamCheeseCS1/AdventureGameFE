@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../../Middleware/axiosWithAuth";
-import { Alert, Spinner } from "reactstrap";
+import { Spinner } from "reactstrap";
 import {
   LoginWrapper,
   Input,
   Button,
+  RegisterStyles,
 } from "../../Styles/formStyle.module.scss";
 
 import NavBar from "../NavBar";
@@ -108,7 +109,7 @@ function Register(props) {
   console.log("handlechanges", register);
   console.log(props);
   return (
-    <div>
+    <div className={RegisterStyles}>
       <NavBar props={props} />
       <div className={LoginWrapper}>
         <h1>Create an Account</h1>
@@ -140,11 +141,11 @@ function Register(props) {
             value={register.password2}
             onChange={handleChanges}
           />
-          <Alert color="danger" isOpen={visibleWarning} toggle={onDismiss}>
+          <div isOpen={visibleWarning} toggle={onDismiss}>
             {error.username}
             <br />
             {error.password ? error.password : ""}
-          </Alert>
+          </div>
           <button className={Button} type="submit">
             Register
           </button>
