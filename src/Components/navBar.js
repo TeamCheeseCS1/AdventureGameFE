@@ -9,10 +9,7 @@ const NavBar = ({ props }) => {
         {props.history.location.pathname === "/play" ? (
           <div className={GameNav}>
             <p>Garbage Man Simulator 5000</p>
-            <Link
-              onClick={() => window.localStorage.clear("token")}
-              to="/login"
-            >
+            <Link onClick={() => window.localStorage.clear("key")} to="/login">
               logout
             </Link>
           </div>

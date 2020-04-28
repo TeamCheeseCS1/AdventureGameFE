@@ -6,23 +6,25 @@ import {
   RoomTitles,
 } from "../../Styles/formStyle.module.scss";
 
-const RoomInfo = () => {
+const RoomInfo = ({ init }) => {
   return (
     <div className={RoomInfoStyles}>
       <div>room info</div>
       <div className={RoomInfoDiv}>
-        <div>room name</div>
-        <div>description</div>
+        <div>{init.location}</div>
+        <div>{init.description}</div>
         <div className={IpDiv}>
           <div>
             <div className={RoomTitles}>items</div>
-            <p>explosive hazard vest</p>
-            <p>jet-powered trash bin</p>
+            {init.items.map((item) => (
+              <p>{item}</p>
+            ))}
           </div>
           <div>
             <div className={RoomTitles}>players</div>
-            <p>timmy garbage</p>
-            <p>xXtrash guy 69Xx</p>
+            {init.players.map((player) => (
+              <p>{player}</p>
+            ))}
           </div>
         </div>
       </div>

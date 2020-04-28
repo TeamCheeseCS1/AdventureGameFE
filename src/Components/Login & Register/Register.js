@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosWithAuth from "../../Middleware/axiosWithAuth";
-import { Spinner } from "reactstrap";
+// import { Spinner } from "reactstrap";
 import {
   LoginWrapper,
   Input,
@@ -52,7 +52,7 @@ function Register(props) {
     ) {
       setError({
         username: "Username Cannot Be Blank",
-        password: "Passwords Cannot Be Blank",
+        password: "Password Cannot Be Blank",
       });
       return false;
     }
@@ -61,11 +61,11 @@ function Register(props) {
       return false;
     }
     if (!props.password1 && !props.password2) {
-      setError({ password: "Passwords Cannot Be Blank" });
+      setError({ password: "Password Cannot Be Blank" });
       return false;
     }
     if (!props.password1) {
-      setError({ password: "Passwords Cannot Be Blank" });
+      setError({ password: "Password Cannot Be Blank" });
       return false;
     } else if (props.password1.length < 8) {
       setError({ password: "Password Must Be At Least 8 Characters" });

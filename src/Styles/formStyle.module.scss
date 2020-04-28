@@ -155,7 +155,7 @@
   position: absolute;
   width: 100%;
   padding-top: 15px;
-  margin-top: 70vh;
+  margin-top: 75vh;
 }
 
 .ControlsDiv {
@@ -163,18 +163,26 @@
   justify-content: space-around;
   padding: 10px 20px 0 20px;
   color: $c;
-  a {
+  p {
+    font-family: $bit;
+  }
+  button {
     text-decoration: none;
+    background: none;
+    border: none;
     color: $c;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      color: $e;
+      transition: 0.3s;
+    }
   }
 }
 
 .ControlIcon {
   font-size: 20px;
-  &:hover {
-    color: $e;
-    transition: 0.3s;
-  }
 }
 
 .HoverText {
@@ -269,6 +277,54 @@
     rgba(255, 255, 255, 0) 90%
   );
   pointer-events: none;
+}
+
+.ChatStyles {
+  font-family: $bit;
+  font-size: 0.7rem;
+  clear: both;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 130px;
+  width: 100vw;
+}
+
+.ChatForm {
+  font-family: $bit;
+  font-size: 0.7rem;
+  input {
+    font-family: $bit;
+    font-size: 15px;
+    padding: 10px;
+    background: papayawhip;
+    border: none;
+    background-color: white;
+    border: $b 1px solid;
+    width: 15rem;
+    margin: 8px 0 0px 0;
+    border-radius: 5px;
+    color: $e;
+  }
+  button {
+    font-family: $bit;
+    width: 150px;
+    height: 35px;
+    cursor: pointer;
+    background: transparent;
+    font-size: 16px;
+    border-radius: 4px;
+    color: $b;
+    border: 2px solid $b;
+    padding: 0 5px 0 5px;
+    transition: 0.5s all ease-out;
+    margin: 40px 50px 0 40px;
+    &:hover {
+      background-color: $a;
+      color: $e;
+      border: 2px solid $e;
+    }
+  }
 }
 
 .MapStyles {
