@@ -9,14 +9,25 @@ const NavLinks = styled.nav`
   border-bottom: black 1px solid;
 `;
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <div className="container-nav">
       <nav className="nav-bar">
-        <NavLinks>
-          <Link to="/login">Login</Link>
-          <Link to="/registration">Registration</Link>
-        </NavLinks>
+        {props.history.location.pathname === "/play" ? (
+          <NavLinks>
+            <Link
+              onClick={() => window.localStorage.clear("token")}
+              to="/login"
+            >
+              logout
+            </Link>
+          </NavLinks>
+        ) : (
+          <NavLinks>
+            <Link to="/login">Login</Link>
+            <Link to="/registration">Registration</Link>
+          </NavLinks>
+        )}
       </nav>
     </div>
   );
