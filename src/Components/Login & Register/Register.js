@@ -65,7 +65,7 @@ function Register(props) {
       setError({ password: "Passwords Cannot Be Blank" });
       return false;
     } else if (props.password1.length < 8) {
-      setError({ password: "Password Must Be At Least 5 Characters" });
+      setError({ password: "Password Must Be At Least 8 Characters" });
       return false;
     }
     if (props.password1 !== props.password2) {
@@ -76,10 +76,8 @@ function Register(props) {
   };
 
   const handleSubmit = (e) => {
-    console.log(props, e);
     e.preventDefault();
     const isValid = validateRegister(register);
-    console.log("registering...", register);
     if (isValid) {
       setSpin(true);
       axiosWithAuth()
@@ -92,10 +90,9 @@ function Register(props) {
           setSpin(false);
         })
         .catch((error) => {
-          console.log("There was an error:", error.message);
           setRegister({ username: "", password1: "", password2: "" });
           setSpin(false);
-          setWarning(true); //displays warning
+          setWarning(true);
           setError(error.message);
         })
         .finally(() => {

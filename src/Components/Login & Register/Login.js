@@ -55,9 +55,9 @@ function Login(props) {
         .post("/login/", loginState)
         .then((res) => {
           localStorage.setItem("key", res.data.key);
+          props.history.push("/play");
         })
         .catch((err) => {
-          console.log("Error Logging In", err);
           setWarning(true);
           setSpin(false);
           setError("Wrong Username/Password");
