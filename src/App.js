@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
-import Registration from "./Components/Login & Register/Register";
-import Login from "./Components/Login & Register/Login";
+import Registration from "./Components/LoginRegister/Register";
+import Login from "./Components/LoginRegister/Login";
 import GameContainer from "./Components/GameContainer";
 import PrivateRoute from "./Components/PrivateRoute";
 import Landing from "./Components/Landing";
