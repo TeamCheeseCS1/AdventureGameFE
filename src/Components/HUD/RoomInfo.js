@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MoveRoomContext } from "../../contexts/MoveRoomContext";
 import {
   RoomInfoStyles,
@@ -8,9 +8,20 @@ import {
   PlayerCont,
 } from "../../Styles/formStyle.module.scss";
 
-const RoomInfo = () => {
-  const { room } = useContext(MoveRoomContext);
-  console.log(room);
+const RoomInfo = ({ initRoom }) => {
+  const { room, setRoom } = useContext(MoveRoomContext);
+
+  useEffect(() => {
+    setRoom({
+      username: initRoom.username,
+      location: initRoom.location,
+      description: initRoom.description,
+      players: initRoom.players,
+      items: ["dusty can", "bloody shotgun"],
+    });
+  }, [initRoom]);
+
+  // console.log(room);
   return (
     <div className={RoomInfoStyles}>
       <div>room info</div>

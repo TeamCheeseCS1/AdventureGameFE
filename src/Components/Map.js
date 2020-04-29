@@ -33,6 +33,7 @@ const Map = () => {
           }
         />
       </div>
+      {room.error_msg ? <div>{room.error_msg}</div> : ""}
     </div>
   );
 };

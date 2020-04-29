@@ -367,9 +367,13 @@
   color: $e;
   position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100vw;
   top: 37vh;
+  div {
+    margin-bottom: 10px;
+  }
 }
 
 .RoomDef {

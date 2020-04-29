@@ -17,6 +17,7 @@ function App() {
     description: "",
     players: [],
     items: ["1", "2"],
+    error_msg: "",
   });
   return (
     <MoveRoomContext.Provider value={{ room, setRoom }}>

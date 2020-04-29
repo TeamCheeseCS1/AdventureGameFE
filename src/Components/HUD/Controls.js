@@ -46,7 +46,8 @@ const Controls = () => {
           location: res.data.title,
           description: res.data.description,
           players: res.data.players,
-          items: ["1", "2"],
+          items: ["dusty can", "bloody shotgun"],
+          error_msg: res.data.error_msg,
         });
       })
       .catch((err) => err.message)
@@ -68,13 +69,14 @@ const Controls = () => {
     axiosWithAuth()
       .post("/adv/move/", move)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRoom({
           username: res.data.name,
           location: res.data.title,
           description: res.data.description,
           players: res.data.players,
-          items: ["1", "2"],
+          items: ["dusty can", "bloody shotgun"],
+          error_msg: res.data.error_msg,
         });
       })
       .catch((err) => err.message)
@@ -96,13 +98,14 @@ const Controls = () => {
     axiosWithAuth()
       .post("/adv/move/", move)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRoom({
           username: res.data.name,
           location: res.data.title,
           description: res.data.description,
           players: res.data.players,
-          items: ["1", "2"],
+          items: ["dusty can", "bloody shotgun"],
+          error_msg: res.data.error_msg,
         });
       })
       .catch((err) => err.message)
@@ -124,13 +127,14 @@ const Controls = () => {
     axiosWithAuth()
       .post("/adv/move/", move)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRoom({
           username: res.data.name,
           location: res.data.title,
           description: res.data.description,
           players: res.data.players,
-          items: ["1", "2"],
+          items: ["dusty can", "bloody shotgun"],
+          error_msg: res.data.error_msg,
         });
       })
       .catch((err) => err.message)
@@ -153,7 +157,7 @@ const Controls = () => {
     axiosWithAuth()
       .post("/adv/move/", move)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => err.message)
       .finally(() => setMove({ token: "", direction: "" }));
@@ -170,7 +174,7 @@ const Controls = () => {
     axiosWithAuth()
       .post("/adv/move/", move)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => err.message)
       .finally(() => setMove({ token: "", direction: "" }));
@@ -187,7 +191,7 @@ const Controls = () => {
     axiosWithAuth()
       .post("/adv/move/", move)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => err.message)
       .finally(() => setMove({ token: "", direction: "" }));
