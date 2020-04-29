@@ -155,60 +155,49 @@ const Controls = () => {
 
   const handleTake = (e) => {
     e.preventDefault();
-    setMove({
-      token: localStorage.getItem(localStorage.key(0))
-        ? localStorage.getItem(localStorage.key(0))
-        : "",
-      direction: e.target.value,
-    });
     axiosWithAuth()
-      .post("/adv/move/", move)
+      .post("/adv/take/", e.target.innerText)
       .then((res) => {
         // console.log(res.data);
       })
-      .catch((err) => err.message)
-      .finally(() => setMove({ token: "", direction: "" }));
+      .catch((err) => err.message);
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
-    setMove({
-      token: localStorage.getItem(localStorage.key(0))
-        ? localStorage.getItem(localStorage.key(0))
-        : "",
-      direction: e.target.value,
-    });
     axiosWithAuth()
-      .post("/adv/move/", move)
+      .post("/adv/drop/", e.target.innerText)
       .then((res) => {
         // console.log(res.data);
       })
-      .catch((err) => err.message)
-      .finally(() => setMove({ token: "", direction: "" }));
+      .catch((err) => err.message);
   };
 
-  const handleShop = (e) => {
+  const handleBuy = (e) => {
     e.preventDefault();
-    setMove({
-      token: localStorage.getItem(localStorage.key(0))
-        ? localStorage.getItem(localStorage.key(0))
-        : "",
-      direction: e.target.value,
-    });
     axiosWithAuth()
-      .post("/adv/move/", move)
+      .post("/adv/buy/", e.target.innerText)
       .then((res) => {
         // console.log(res.data);
       })
-      .catch((err) => err.message)
-      .finally(() => setMove({ token: "", direction: "" }));
+      .catch((err) => err.message);
+  };
+
+  const handleSell = (e) => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post("/adv/sell/", e.target.innerText)
+      .then((res) => {
+        // console.log(res.data);
+      })
+      .catch((err) => err.message);
   };
 
   return (
     <div className={ControlsStyles}>
       <div>controls</div>
       <div className={ControlsDiv}>
-        <button id="pickUp" onClick={handleTake}>
+        <button id="pickUp">
           <div className={HoverText}>
             <p>pick up item</p>
             <FaHandRock className={ControlIcon} />
@@ -218,11 +207,11 @@ const Controls = () => {
           <PopoverHeader className={PopUpHeader}>pick up item</PopoverHeader>
           <PopoverBody className={PopUpBody}>
             {room.items.map((item) => (
-              <button onClick={handleShop}>{item}</button>
+              <button onClick={handleTake}>{item}</button>
             ))}
           </PopoverBody>
         </UncontrolledPopover>
-        <button id="dropItem" onClick={handleDrop}>
+        <button id="dropItem">
           <div className={HoverText}>
             <p>drop item</p>
             <FaHandPaper className={ControlIcon} />
@@ -232,7 +221,7 @@ const Controls = () => {
           <PopoverHeader className={PopUpHeader}>drop item</PopoverHeader>
           <PopoverBody className={PopUpBody}>
             {room.items.map((item) => (
-              <button onClick={handleShop}>{item}</button>
+              <button onClick={handleDrop}>{item}</button>
             ))}
           </PopoverBody>
         </UncontrolledPopover>
@@ -269,8 +258,13 @@ const Controls = () => {
         <UncontrolledPopover trigger="legacy" placement="top" target="shop">
           <PopoverHeader className={PopUpHeader}>item shop</PopoverHeader>
           <PopoverBody className={PopUpBody}>
+            <div>buy</div>
             {room.items.map((item) => (
-              <button onClick={handleShop}>{item}</button>
+              <button onClick={handleBuy}>{item}</button>
+            ))}
+            <div>sell</div>
+            {room.items.map((item) => (
+              <button onClick={handleSell}>{item}</button>
             ))}
           </PopoverBody>
         </UncontrolledPopover>

@@ -9,6 +9,10 @@ import {
   S,
   E,
   W,
+  NN,
+  SS,
+  EE,
+  WW,
 } from "../Styles/formStyle.module.scss";
 
 const Map = () => {

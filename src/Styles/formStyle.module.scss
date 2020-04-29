@@ -471,6 +471,11 @@
   button:focus {
     outline: none;
   }
+  div {
+    // color: $e;
+    text-align: left;
+    text-decoration: underline;
+  }
 }
 
 .PopUpHeader {
