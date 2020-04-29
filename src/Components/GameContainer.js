@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GameCont } from "../Styles/formStyle.module.scss";
+import { GameCont, User } from "../Styles/formStyle.module.scss";
 import axiosWithAuth from "../Middleware/axiosWithAuth";
 
 import NavBar from "./NavBar";
@@ -43,11 +43,11 @@ const GameContainer = (props) => {
     <div>
       <NavBar props={props} />
       <div className={GameCont}>
-        <Map />
+        <Map init={init} />
         <RoomInfo init={init} />
         <Chat />
         <PusherFeed />
-        <div>{init.username}</div>
+        <div className={User}>{init.username}</div>
         <Controls />
       </div>
     </div>
