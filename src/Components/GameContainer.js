@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { GameCont, User } from "../Styles/formStyle.module.scss";
 import axiosWithAuth from "../Middleware/axiosWithAuth";
+import { MoveRoomContext } from "../contexts/MoveRoomContext";
 
 import NavBar from "./NavBar";
 import Controls from "./HUD/Controls";
@@ -10,44 +11,35 @@ import Chat from "./HUD/Chat";
 import Map from "./Map";
 
 const GameContainer = (props) => {
-  const [init, setInit] = useState({
-    username: "",
-    location: "",
-    description: "",
-    players: [],
-    items: [],
-  });
+  const { room, setRoom } = useContext(MoveRoomContext);
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(
-        "/adv/init/",
-        `Authorization: Token ${localStorage.getItem(localStorage.key(0))}`
-      )
-      .then((res) => {
-        console.log(res.data);
-        setInit({
-          username: res.data.username,
-          location: res.data.location,
-          description: res.data.description,
-          players: res.data.players,
-          items: res.data.items,
-        });
-      })
-      .catch((error) => {
-        console.log(error.message);
+  console.log(`Authorization: Token ${localStorage.getItem("key")}`);
+
+  // useEffect(() => {
+  axiosWithAuth()
+    .get("/adv/init/")
+    .then((res) => {
+      console.log(res.data);
+      setRoom({
+        username: res.data.name,
+        location: res.data.location,
+        description: res.data.description,
+        players: res.data.players,
+        items: ["1", "2"],
       });
-  }, []);
+    })
+    .catch((error) => error.message);
+  // }, [setRoom]);
 
   return (
     <div>
       <NavBar props={props} />
       <div className={GameCont}>
-        <Map init={init} />
-        <RoomInfo init={init} />
+        <Map />
+        <RoomInfo />
         <Chat />
         <PusherFeed />
-        <div className={User}>{init.username}</div>
+        <div className={User}>{room.username}</div>
         <Controls />
       </div>
     </div>

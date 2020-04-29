@@ -1,30 +1,38 @@
-import React from "react";
+import React, { useContext } from "react";
+import { MoveRoomContext } from "../../contexts/MoveRoomContext";
 import {
   RoomInfoStyles,
   RoomInfoDiv,
   IpDiv,
   RoomTitles,
+  PlayerCont,
 } from "../../Styles/formStyle.module.scss";
 
-const RoomInfo = ({ init }) => {
+const RoomInfo = () => {
+  const { room } = useContext(MoveRoomContext);
+  console.log(room);
   return (
     <div className={RoomInfoStyles}>
       <div>room info</div>
       <div className={RoomInfoDiv}>
-        <div>{init.location}</div>
-        <div>{init.description}</div>
+        <div>{room.location}</div>
+        <div>{room.description}</div>
         <div className={IpDiv}>
           <div>
             <div className={RoomTitles}>items</div>
-            {init.items.map((item) => (
-              <p>{item}</p>
-            ))}
+            <div className={PlayerCont}>
+              {room.items.map((item) => (
+                <p>{item}</p>
+              ))}
+            </div>
           </div>
           <div>
             <div className={RoomTitles}>players</div>
-            {init.players.map((player) => (
-              <p>{player}</p>
-            ))}
+            <div className={PlayerCont}>
+              {room.players.map((player) => (
+                <p>{player}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
