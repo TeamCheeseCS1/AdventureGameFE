@@ -106,6 +106,7 @@
     &:hover {
       color: $e;
       transition: 0.3s;
+      text-decoration: none;
     }
   }
   p {
@@ -170,7 +171,7 @@
 .ControlsDiv {
   display: flex;
   justify-content: space-around;
-  padding: 10px 20px 0 20px;
+  padding: 10px 8% 0 8%;
   color: $c;
   p {
     font-family: $bit;
@@ -219,6 +220,7 @@
   border-left: 1px solid $b;
   clear: both;
   position: absolute;
+  width: 30%;
   margin-left: 70vw;
   padding-left: 5px;
   margin-right: 50px;
@@ -249,6 +251,40 @@
 
 .RoomTitles {
   border-bottom: $c 1px solid;
+  width: 60%;
+}
+
+.ItemsTitle {
+  border-bottom: $c 1px solid;
+  width: 90%;
+}
+
+.PlayerCont {
+  height: 310px;
+  overflow: auto;
+  width: 100%;
+  margin-left: -20%;
+}
+.ItemCont {
+  height: 320px;
+  overflow: auto;
+  width: 100%;
+  margin-left: -5%;
+}
+
+.PlayerCont:after {
+  position: absolute;
+  top: 320px;
+  right: 20px;
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: linear-gradient(
+    to top,
+    rgba(41, 33, 31, 1) 35%,
+    rgba(255, 255, 255, 0) 90%
+  );
+  pointer-events: none;
 }
 
 .PusherFeedStyles {
@@ -268,6 +304,8 @@
   flex-direction: column;
   padding: 20px 20px 0 20px;
   color: $c;
+  height: 390px;
+  overflow: auto;
   div {
     padding: 2.5px 0 2.5px 0;
   }
@@ -275,7 +313,7 @@
 
 .PusherFeedDiv:after {
   position: absolute;
-  top: 100px;
+  top: 320px;
   right: 20px;
   height: 100%;
   width: 100%;
@@ -342,9 +380,13 @@
   color: $e;
   position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100vw;
   top: 37vh;
+  div {
+    margin-bottom: 40px;
+  }
 }
 
 .RoomDef {
@@ -356,17 +398,17 @@
   height: 15rem;
 }
 
-.N {
+.NN {
   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
     0px -40px 10px rgba(154, 16, 29, 0.2);
 }
 
-.S {
+.SS {
   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
     0px 40px 10px rgba(154, 16, 29, 0.2);
 }
 
-.E {
+.EE {
   border: $e 5px solid;
   background: rgba(154, 16, 29, 0.1);
   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
@@ -375,7 +417,7 @@
   height: 15rem;
 }
 
-.W {
+.WW {
   border: $e 5px solid;
   background: rgba(154, 16, 29, 0.1);
   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
@@ -387,4 +429,63 @@
 .CharStyles {
   padding-top: 32%;
   width: 65px;
+}
+
+.N {
+  padding-top: 6%;
+  width: 65px;
+}
+
+.S {
+  padding-top: 60%;
+  width: 65px;
+}
+
+.E {
+  padding-top: 32%;
+  margin-left: 60%;
+  width: 65px;
+}
+
+.W {
+  padding-top: 32%;
+  margin-right: 60%;
+  width: 65px;
+}
+
+.PopUpBody {
+  background: rgba(132, 85, 38, 0.95) !important;
+  font-family: $bit;
+  font-size: 0.75rem;
+  color: $d !important;
+  padding-right: 0% !important;
+  box-shadow: inset 0px 0px 1px $a, 0 0 10px $b;
+  width: 14rem;
+  button {
+    background: none;
+    border: none;
+    &:hover {
+      color: $e;
+    }
+  }
+  button:focus {
+    outline: none;
+  }
+  div {
+    // color: $e;
+    text-align: left;
+    text-decoration: underline;
+  }
+}
+
+.PopUpHeader {
+  background: $d !important;
+  text-align: center;
+  border-bottom: $c 0.25px solid !important;
+  border-radius: 0 00 !important;
+  font-family: $bit;
+  font-size: 0.85rem !important;
+  color: $a !important;
+  text-shadow: 0px 0px 3px $b;
+  box-shadow: inset 0px 0px 1px $a, 0 0 10px $b;
 }

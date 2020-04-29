@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GameCont, User } from "../Styles/formStyle.module.scss";
 import axiosWithAuth from "../Middleware/axiosWithAuth";
+import { MoveRoomContext } from "../contexts/MoveRoomContext";
 
 import NavBar from "./NavBar";
 import Controls from "./HUD/Controls";
@@ -10,7 +11,8 @@ import Chat from "./HUD/Chat";
 import Map from "./Map";
 
 const GameContainer = (props) => {
-  const [init, setInit] = useState({
+  // const { room, setRoom } = useContext(MoveRoomContext);
+  const [initRoom, setInitRoom] = useState({
     username: "",
     location: "",
     description: "",
@@ -20,34 +22,29 @@ const GameContainer = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(
-        "/adv/init/",
-        `Authorization: Token ${localStorage.getItem(localStorage.key(0))}`
-      )
+      .get("/adv/init/")
       .then((res) => {
-        console.log(res.data);
-        setInit({
-          username: res.data.username,
-          location: res.data.location,
+        // console.log(res.data);
+        setInitRoom({
+          username: res.data.name,
+          location: res.data.title,
           description: res.data.description,
           players: res.data.players,
-          items: res.data.items,
+          items: ["dusty can", "bloody shotgun"],
         });
       })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }, []);
-
+      .catch((error) => error.message);
+  }, [setInitRoom]);
+  // console.log(initRoom);
   return (
     <div>
       <NavBar props={props} />
       <div className={GameCont}>
-        <Map init={init} />
-        <RoomInfo init={init} />
+        <Map />
+        <RoomInfo initRoom={initRoom} />
         <Chat />
         <PusherFeed />
-        <div className={User}>{init.username}</div>
+        <div className={User}>{initRoom.username}</div>
         <Controls />
       </div>
     </div>

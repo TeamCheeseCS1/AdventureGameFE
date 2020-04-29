@@ -39,6 +39,7 @@ const Chat = () => {
         <input
           onChange={handleChange}
           type="text"
+          name="chatBox"
           placeholder="enter message..."
         />
         <button onClick={handleSubmit}>sumbit</button>
