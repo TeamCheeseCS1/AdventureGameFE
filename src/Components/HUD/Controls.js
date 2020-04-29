@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axiosWithAuth from "../../Middleware/axiosWithAuth";
 import { MoveCharContext } from "../../contexts/MoveCharContext";
 import { MoveRoomContext } from "../../contexts/MoveRoomContext";
+import { UncontrolledPopover, PopoverHeader, PopoverBody } from "reactstrap";
 import {
   FaArrowCircleUp,
   FaArrowCircleDown,
@@ -16,11 +17,13 @@ import {
   ControlsDiv,
   HoverText,
   ControlIcon,
+  PopUpBody,
+  PopUpHeader,
 } from "../../Styles/formStyle.module.scss";
 
 const Controls = () => {
   const { setMoveChar } = useContext(MoveCharContext);
-  const { setRoom } = useContext(MoveRoomContext);
+  const { room, setRoom } = useContext(MoveRoomContext);
   const [move, setMove] = useState({
     token: "",
     direction: "",
@@ -48,6 +51,7 @@ const Controls = () => {
           players: res.data.players,
           items: ["dusty can", "bloody shotgun"],
           error_msg: res.data.error_msg,
+          // nsew: [true, true, false, true],
         });
       })
       .catch((err) => err.message)
@@ -77,6 +81,7 @@ const Controls = () => {
           players: res.data.players,
           items: ["dusty can", "bloody shotgun"],
           error_msg: res.data.error_msg,
+          // nsew: [true, true, false, true],
         });
       })
       .catch((err) => err.message)
@@ -106,6 +111,7 @@ const Controls = () => {
           players: res.data.players,
           items: ["dusty can", "bloody shotgun"],
           error_msg: res.data.error_msg,
+          // nsew: [true, true, false, true],
         });
       })
       .catch((err) => err.message)
@@ -135,6 +141,7 @@ const Controls = () => {
           players: res.data.players,
           items: ["dusty can", "bloody shotgun"],
           error_msg: res.data.error_msg,
+          // nsew: [true, true, false, true],
         });
       })
       .catch((err) => err.message)
@@ -201,18 +208,34 @@ const Controls = () => {
     <div className={ControlsStyles}>
       <div>controls</div>
       <div className={ControlsDiv}>
-        <button onClick={handleTake}>
+        <button id="pickUp" onClick={handleTake}>
           <div className={HoverText}>
-            <p>take item</p>
+            <p>pick up item</p>
             <FaHandRock className={ControlIcon} />
           </div>
         </button>
-        <button onClick={handleDrop}>
+        <UncontrolledPopover trigger="legacy" placement="top" target="pickUp">
+          <PopoverHeader className={PopUpHeader}>pick up item</PopoverHeader>
+          <PopoverBody className={PopUpBody}>
+            {room.items.map((item) => (
+              <button onClick={handleShop}>{item}</button>
+            ))}
+          </PopoverBody>
+        </UncontrolledPopover>
+        <button id="dropItem" onClick={handleDrop}>
           <div className={HoverText}>
             <p>drop item</p>
             <FaHandPaper className={ControlIcon} />
           </div>
         </button>
+        <UncontrolledPopover trigger="legacy" placement="top" target="dropItem">
+          <PopoverHeader className={PopUpHeader}>drop item</PopoverHeader>
+          <PopoverBody className={PopUpBody}>
+            {room.items.map((item) => (
+              <button onClick={handleShop}>{item}</button>
+            ))}
+          </PopoverBody>
+        </UncontrolledPopover>
         <button onClick={handleMoveW}>
           <div className={HoverText}>
             <p>move left</p>
@@ -237,12 +260,20 @@ const Controls = () => {
             <FaArrowCircleDown className={ControlIcon} />
           </div>
         </button>
-        <button onClick={handleShop}>
+        <button id="shop">
           <div className={HoverText}>
             <p>shop</p>
             <FaStore className={ControlIcon} />
           </div>
         </button>
+        <UncontrolledPopover trigger="legacy" placement="top" target="shop">
+          <PopoverHeader className={PopUpHeader}>item shop</PopoverHeader>
+          <PopoverBody className={PopUpBody}>
+            {room.items.map((item) => (
+              <button onClick={handleShop}>{item}</button>
+            ))}
+          </PopoverBody>
+        </UncontrolledPopover>
       </div>
     </div>
   );

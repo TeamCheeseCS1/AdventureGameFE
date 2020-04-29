@@ -106,6 +106,7 @@
     &:hover {
       color: $e;
       transition: 0.3s;
+      text-decoration: none;
     }
   }
   p {
@@ -170,7 +171,7 @@
 .ControlsDiv {
   display: flex;
   justify-content: space-around;
-  padding: 10px 20px 0 20px;
+  padding: 10px 8% 0 8%;
   color: $c;
   p {
     font-family: $bit;
@@ -253,10 +254,22 @@
   width: 60%;
 }
 
+.ItemsTitle {
+  border-bottom: $c 1px solid;
+  width: 90%;
+}
+
 .PlayerCont {
+  height: 310px;
+  overflow: auto;
+  width: 100%;
+  margin-left: -20%;
+}
+.ItemCont {
   height: 320px;
   overflow: auto;
-  width: 60%;
+  width: 100%;
+  margin-left: -5%;
 }
 
 .PlayerCont:after {
@@ -291,7 +304,7 @@
   flex-direction: column;
   padding: 20px 20px 0 20px;
   color: $c;
-  height: 350px;
+  height: 390px;
   overflow: auto;
   div {
     padding: 2.5px 0 2.5px 0;
@@ -300,7 +313,7 @@
 
 .PusherFeedDiv:after {
   position: absolute;
-  top: 300px;
+  top: 320px;
   right: 20px;
   height: 100%;
   width: 100%;
@@ -372,7 +385,7 @@
   width: 100vw;
   top: 37vh;
   div {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
   }
 }
 
@@ -385,33 +398,33 @@
   height: 15rem;
 }
 
-// .NN {
-//   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
-//     0px -40px 10px rgba(154, 16, 29, 0.2);
-// }
+.NN {
+  box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
+    0px -40px 10px rgba(154, 16, 29, 0.2);
+}
 
-// .SS {
-//   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
-//     0px 40px 10px rgba(154, 16, 29, 0.2);
-// }
+.SS {
+  box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
+    0px 40px 10px rgba(154, 16, 29, 0.2);
+}
 
-// .EE {
-//   border: $e 5px solid;
-//   background: rgba(154, 16, 29, 0.1);
-//   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
-//     40px 0px 10px rgba(154, 16, 29, 0.2);
-//   width: 15rem;
-//   height: 15rem;
-// }
+.EE {
+  border: $e 5px solid;
+  background: rgba(154, 16, 29, 0.1);
+  box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
+    40px 0px 10px rgba(154, 16, 29, 0.2);
+  width: 15rem;
+  height: 15rem;
+}
 
-// .WW {
-//   border: $e 5px solid;
-//   background: rgba(154, 16, 29, 0.1);
-//   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
-//     -40px 0px 10px rgba(154, 16, 29, 0.2);
-//   width: 15rem;
-//   height: 15rem;
-// }
+.WW {
+  border: $e 5px solid;
+  background: rgba(154, 16, 29, 0.1);
+  box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
+    -40px 0px 10px rgba(154, 16, 29, 0.2);
+  width: 15rem;
+  height: 15rem;
+}
 
 .CharStyles {
   padding-top: 32%;
@@ -430,12 +443,44 @@
 
 .E {
   padding-top: 32%;
-  padding-left: 60%;
+  margin-left: 60%;
   width: 65px;
 }
 
 .W {
   padding-top: 32%;
-  padding-right: 60%;
+  margin-right: 60%;
   width: 65px;
+}
+
+.PopUpBody {
+  background: rgba(132, 85, 38, 0.95) !important;
+  font-family: $bit;
+  font-size: 0.75rem;
+  color: $d !important;
+  padding-right: 0% !important;
+  box-shadow: inset 0px 0px 1px $a, 0 0 10px $b;
+  width: 14rem;
+  button {
+    background: none;
+    border: none;
+    &:hover {
+      color: $e;
+    }
+  }
+  button:focus {
+    outline: none;
+  }
+}
+
+.PopUpHeader {
+  background: $d !important;
+  text-align: center;
+  border-bottom: $c 0.25px solid !important;
+  border-radius: 0 00 !important;
+  font-family: $bit;
+  font-size: 0.85rem !important;
+  color: $a !important;
+  text-shadow: 0px 0px 3px $b;
+  box-shadow: inset 0px 0px 1px $a, 0 0 10px $b;
 }

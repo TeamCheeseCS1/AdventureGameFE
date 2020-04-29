@@ -6,6 +6,8 @@ import {
   IpDiv,
   RoomTitles,
   PlayerCont,
+  ItemCont,
+  ItemsTitle,
 } from "../../Styles/formStyle.module.scss";
 
 const RoomInfo = ({ initRoom }) => {
@@ -30,8 +32,8 @@ const RoomInfo = ({ initRoom }) => {
         <div>{room.description}</div>
         <div className={IpDiv}>
           <div>
-            <div className={RoomTitles}>items</div>
-            <div className={PlayerCont}>
+            <div className={ItemsTitle}>items</div>
+            <div className={ItemCont}>
               {room.items.map((item) => (
                 <p>{item}</p>
               ))}
