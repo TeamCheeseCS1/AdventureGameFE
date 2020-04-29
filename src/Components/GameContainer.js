@@ -25,7 +25,7 @@ const GameContainer = (props) => {
         location: res.data.location,
         description: res.data.description,
         players: res.data.players,
-        items: ["1", "2"],
+        items: ["dusty can", "bloody shotgun"],
       });
     })
     .catch((error) => error.message);
