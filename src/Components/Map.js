@@ -1,11 +1,19 @@
 import React from "react";
-import { MapStyles, CharStyles } from "../Styles/formStyle.module.scss";
+import {
+  MapStyles,
+  CharStyles,
+  RoomDef,
+  N,
+  S,
+  E,
+  W,
+} from "../Styles/formStyle.module.scss";
 
 const Map = ({ init }) => {
   console.log(init);
   return (
     <div className={MapStyles}>
-      <div>
+      <div className={RoomDef}>
         <img alt="nic cage" src="../download.png" className={CharStyles} />
       </div>
     </div>

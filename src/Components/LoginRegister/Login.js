@@ -84,7 +84,7 @@ function Login(props) {
             className={Input}
             type="text"
             name="username"
-            placeholder="Placeholder"
+            placeholder="username..."
             onChange={handleChanges}
             value={loginState.username}
           />
