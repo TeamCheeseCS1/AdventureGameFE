@@ -13,13 +13,23 @@ import {
   SS,
   EE,
   WW,
+  ErrorMsg,
 } from "../Styles/formStyle.module.scss";
+
+const n = false;
+const s = true;
+const e = true;
+const w = true;
 
 const Map = () => {
   const { moveChar } = useContext(MoveCharContext);
   const { room } = useContext(MoveRoomContext);
   return (
     <div className={MapStyles}>
+      {n ? <div className={NN}></div> : ""}
+      {s ? <div className={SS}></div> : ""}
+      {e ? <div className={EE}></div> : ""}
+      {w ? <div className={WW}></div> : ""}
       <div className={RoomDef}>
         <img
           alt="nic cage"
@@ -37,7 +47,7 @@ const Map = () => {
           }
         />
       </div>
-      {room.error_msg ? <div>{room.error_msg}</div> : ""}
+      {room.error_msg ? <div className={ErrorMsg}>{room.error_msg}</div> : ""}
     </div>
   );
 };

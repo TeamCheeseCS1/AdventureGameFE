@@ -384,12 +384,10 @@
   align-items: center;
   width: 100vw;
   top: 37vh;
-  div {
-    margin-bottom: 40px;
-  }
 }
 
 .RoomDef {
+  position: absolute;
   border: $e 5px solid;
   background: rgba(154, 16, 29, 0.1);
   box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
@@ -398,30 +396,35 @@
   height: 15rem;
 }
 
+.ErrorMsg {
+  margin-top: 21%;
+}
+
 .NN {
-  box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
-    0px -40px 10px rgba(154, 16, 29, 0.2);
+  position: absolute;
+  box-shadow: 0px -40px 10px rgba(154, 16, 29, 0.2);
+  width: 15rem;
+  height: 15rem;
 }
 
 .SS {
-  box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
-    0px 40px 10px rgba(154, 16, 29, 0.2);
+  position: absolute;
+
+  box-shadow: 0px 40px 10px rgba(154, 16, 29, 0.2);
+  width: 15rem;
+  height: 15rem;
 }
 
 .EE {
-  border: $e 5px solid;
-  background: rgba(154, 16, 29, 0.1);
-  box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
-    40px 0px 10px rgba(154, 16, 29, 0.2);
+  position: absolute;
+  box-shadow: 40px 0px 10px rgba(154, 16, 29, 0.2);
   width: 15rem;
   height: 15rem;
 }
 
 .WW {
-  border: $e 5px solid;
-  background: rgba(154, 16, 29, 0.1);
-  box-shadow: inset 0px 0px 10px rgba(154, 16, 29, 0.8),
-    -40px 0px 10px rgba(154, 16, 29, 0.2);
+  position: absolute;
+  box-shadow: -40px 0px 10px rgba(154, 16, 29, 0.2);
   width: 15rem;
   height: 15rem;
 }
