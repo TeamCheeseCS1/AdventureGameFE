@@ -17,7 +17,7 @@ import {
 } from "../Styles/formStyle.module.scss";
 
 const n = false;
-const s = true;
+const s = false;
 const e = true;
 const w = true;
 
