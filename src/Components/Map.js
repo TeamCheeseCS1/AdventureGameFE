@@ -18,7 +18,7 @@ import {
 
 const n = false;
 const s = true;
-const e = true;
+const e = false;
 const w = true;
 
 const Map = () => {
