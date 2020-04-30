@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GameCont, User } from "../Styles/formStyle.module.scss";
 import axiosWithAuth from "../Middleware/axiosWithAuth";
-import { MoveRoomContext } from "../contexts/MoveRoomContext";
+import Pusher from "pusher-js";
+import { ChatContext } from "../contexts/ChatContext";
 
 import NavBar from "./NavBar";
 import Controls from "./HUD/Controls";
@@ -11,7 +12,7 @@ import Chat from "./HUD/Chat";
 import Map from "./Map";
 
 const GameContainer = (props) => {
-  // const { room, setRoom } = useContext(MoveRoomContext);
+  const { chat, setChat } = useContext(ChatContext);
   const [initRoom, setInitRoom] = useState({
     username: "",
     location: "",
@@ -19,6 +20,17 @@ const GameContainer = (props) => {
     players: [],
     items: [],
   });
+
+  const pusher = new Pusher("a85348ba3aac64a15fbd", {
+    cluster: "us2",
+  });
+  pusher.subscribe("chat");
+  // setChat({ chats: [] });
+
+  const payload = {
+    username: chat.username,
+    message: chat.text,
+  };
 
   useEffect(() => {
     axiosWithAuth()
@@ -35,6 +47,16 @@ const GameContainer = (props) => {
       })
       .catch((error) => error.message);
   }, [setInitRoom]);
+
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .post("/adv/push/", payload)
+  //     .then((res) => {
+  //       // console.log(res.data);
+  //     })
+  //     .catch((error) => error.message);
+  // }, [chat]);
+
   // console.log(initRoom);
   return (
     <div>

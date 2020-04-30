@@ -27,6 +27,7 @@ const Controls = () => {
   const [move, setMove] = useState({
     token: "",
     direction: "",
+    // username: room.username,
   });
 
   //handle direction actions
