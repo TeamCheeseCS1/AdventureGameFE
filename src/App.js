@@ -8,9 +8,15 @@ import PrivateRoute from "./Components/PrivateRoute";
 import Landing from "./Components/Landing";
 import { MoveCharContext } from "./contexts/MoveCharContext";
 import { MoveRoomContext } from "./contexts/MoveRoomContext";
+import { ChatContext } from "./contexts/ChatContext";
 
 function App() {
   const [moveChar, setMoveChar] = useState("");
+  const [chat, setChat] = useState({
+    text: "",
+    username: "",
+    chats: [],
+  });
   const [room, setRoom] = useState({
     username: "",
     location: "",
@@ -22,12 +28,14 @@ function App() {
   return (
     <MoveRoomContext.Provider value={{ room, setRoom }}>
       <MoveCharContext.Provider value={{ moveChar, setMoveChar }}>
-        <div className="App">
-          <Route exact path="/" component={Landing} />
-          <Route path="/login" component={Login} />
-          <Route path="/registration" component={Registration} />
-          <PrivateRoute path="/play" component={GameContainer} />
-        </div>
+        <ChatContext.Provider value={{ chat, setChat }}>
+          <div className="App">
+            <Route exact path="/" component={Landing} />
+            <Route path="/login" component={Login} />
+            <Route path="/registration" component={Registration} />
+            <PrivateRoute path="/play" component={GameContainer} />
+          </div>
+        </ChatContext.Provider>
       </MoveCharContext.Provider>
     </MoveRoomContext.Provider>
   );

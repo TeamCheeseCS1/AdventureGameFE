@@ -106,8 +106,6 @@ function Register(props) {
     }
   };
 
-  console.log("handlechanges", register);
-  console.log(props);
   return (
     <div className={RegisterStyles}>
       <NavBar props={props} />
