@@ -23,7 +23,7 @@ const Chat = () => {
     axiosWithAuth()
       .post("/adv/say/", chat)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         setChat({ token: "", message: "" });

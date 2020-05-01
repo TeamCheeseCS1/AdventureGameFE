@@ -7,8 +7,8 @@ const NavBar = ({ props }) => {
   const { loggedIn, setLoggedIn } = useContext(LoggedInContext);
 
   const logout = () => {
-    window.localStorage.clear("key");
     setLoggedIn(false);
+    window.localStorage.clear("key");
   };
 
   return (
@@ -17,7 +17,7 @@ const NavBar = ({ props }) => {
         {props.history.location.pathname === "/play" ? (
           <div className={GameNav}>
             <p>Garbage Man Simulator 5000</p>
-            <Link onClick={() => logout} to="/login">
+            <Link onClick={logout} to="/login">
               logout
             </Link>
           </div>

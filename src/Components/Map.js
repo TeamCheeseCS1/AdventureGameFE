@@ -19,7 +19,7 @@ import {
 const Map = () => {
   const { moveChar } = useContext(MoveCharContext);
   const { room } = useContext(MoveRoomContext);
-  console.log(room);
+
   return (
     <div className={MapStyles}>
       {room.nsew && room.nsew[0] ? <div className={NN}></div> : ""}

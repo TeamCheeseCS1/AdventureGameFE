@@ -26,7 +26,6 @@ const Controls = () => {
   const { room, setRoom } = useContext(MoveRoomContext);
 
   //handle direction actions
-  console.log("room", room);
 
   const handleMove = (e, d) => {
     e.preventDefault();
@@ -52,7 +51,7 @@ const Controls = () => {
             ...room,
             error_msg: "you can't move in that direction",
           }),
-          console.log(err)
+          err.message
         )
       )
       .finally(() => {
@@ -68,7 +67,7 @@ const Controls = () => {
     axiosWithAuth()
       .post("/adv/take/", take)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRoom({
           ...room,
           items: room.items.filter((it) => it !== item),
