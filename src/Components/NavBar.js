@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { GameNav, Nav } from "../Styles/formStyle.module.scss";
+import { LoggedInContext } from "../contexts/LoggedIn";
 
 const NavBar = ({ props }) => {
+  const { loggedIn, setLoggedIn } = useContext(LoggedInContext);
+
+  const logout = () => {
+    window.localStorage.clear("key");
+    setLoggedIn(false);
+  };
+
   return (
     <div className="container-nav">
       <nav className="nav-bar">
         {props.history.location.pathname === "/play" ? (
           <div className={GameNav}>
             <p>Garbage Man Simulator 5000</p>
-            <Link onClick={() => window.localStorage.clear("key")} to="/login">
+            <Link onClick={() => logout} to="/login">
               logout
             </Link>
           </div>

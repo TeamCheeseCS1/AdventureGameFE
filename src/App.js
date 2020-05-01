@@ -10,9 +10,11 @@ import { MoveCharContext } from "./contexts/MoveCharContext";
 import { MoveRoomContext } from "./contexts/MoveRoomContext";
 import { ChatContext } from "./contexts/ChatContext";
 import { PlayersContext } from "./contexts/PlayersContext";
+import { LoggedInContext } from "./contexts/LoggedIn";
 import io from "socket.io-client";
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(true);
   const [players, setPlayers] = useState([]);
   const [moveChar, setMoveChar] = useState("");
   const [chat, setChat] = useState({
@@ -31,28 +33,37 @@ function App() {
     inventory: [],
   });
 
+  const socket = io("https://trashhero.herokuapp.com/", {
+    transports: ["websocket", "polling"],
+  });
+
   useEffect(() => {
-    const socket = io("https://trashhero.herokuapp.com/", {
-      transports: ["websocket", "polling"],
-    });
     socket.on("player", (p) => setPlayers(p));
-  }, [room]);
+  }, []);
+
+  useEffect(() => {
+    if (!loggedIn) {
+      socket.emit("logout", room.username);
+    }
+  }, [loggedIn]);
 
   return (
-    <PlayersContext.Provider value={{ players, setPlayers }}>
-      <MoveRoomContext.Provider value={{ room, setRoom }}>
-        <MoveCharContext.Provider value={{ moveChar, setMoveChar }}>
-          <ChatContext.Provider value={{ chat, setChat }}>
-            <div className="App">
-              <Route exact path="/" component={Landing} />
-              <Route path="/login" component={Login} />
-              <Route path="/registration" component={Registration} />
-              <PrivateRoute path="/play" component={GameContainer} />
-            </div>
-          </ChatContext.Provider>
-        </MoveCharContext.Provider>
-      </MoveRoomContext.Provider>
-    </PlayersContext.Provider>
+    <LoggedInContext.Provider value={{ loggedIn, setLoggedIn }}>
+      <PlayersContext.Provider value={{ players, setPlayers }}>
+        <MoveRoomContext.Provider value={{ room, setRoom }}>
+          <MoveCharContext.Provider value={{ moveChar, setMoveChar }}>
+            <ChatContext.Provider value={{ chat, setChat }}>
+              <div className="App">
+                <Route exact path="/" component={Landing} />
+                <Route path="/login" component={Login} />
+                <Route path="/registration" component={Registration} />
+                <PrivateRoute path="/play" component={GameContainer} />
+              </div>
+            </ChatContext.Provider>
+          </MoveCharContext.Provider>
+        </MoveRoomContext.Provider>
+      </PlayersContext.Provider>
+    </LoggedInContext.Provider>
   );
 }
 

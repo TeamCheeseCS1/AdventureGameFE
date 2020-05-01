@@ -15,6 +15,8 @@ const RoomInfo = () => {
   const { room } = useContext(MoveRoomContext);
   const { players } = useContext(PlayersContext);
 
+  console.log(players);
+
   return (
     <div className={RoomInfoStyles}>
       <div>room info</div>
@@ -33,7 +35,7 @@ const RoomInfo = () => {
           <div>
             <div className={RoomTitles}>players</div>
             <div className={PlayerCont}>
-              {players && players.map((player) => <p>{player}</p>)}
+              {players.data && players.data.map((player) => <p>{player}</p>)}
             </div>
           </div>
         </div>
