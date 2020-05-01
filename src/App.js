@@ -30,9 +30,11 @@ function App() {
   });
 
   useEffect(() => {
-    const socket = io("https://trashhero.herokuapp.com/");
+    const socket = io("https://trashhero.herokuapp.com/", {
+      transports: ["websocket", "polling"],
+    });
     socket.on("player", (players) => setRoom({ players, ...room }));
-  }, []);
+  }, [room]);
 
   return (
     <MoveRoomContext.Provider value={{ room, setRoom }}>
