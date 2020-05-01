@@ -63,11 +63,12 @@ function Login(props) {
           localStorage.setItem("key", res.data.key);
           setRoom({
             username: res.data.username,
-            // location: res.data.title,
+            location: res.data.location,
             id: res.data.location_room_id,
-            // description: res.data.description,
+            description: res.data.description,
             players: res.data.players,
-            // items: ["dusty can", "bloody shotgun"],
+            items: res.data.items,
+            nsew: [true, true, false, true],
           });
           props.history.push("/play");
         })
