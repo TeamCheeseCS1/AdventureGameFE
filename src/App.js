@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
 import Registration from "./Components/LoginRegister/Register";
@@ -9,6 +9,7 @@ import Landing from "./Components/Landing";
 import { MoveCharContext } from "./contexts/MoveCharContext";
 import { MoveRoomContext } from "./contexts/MoveRoomContext";
 import { ChatContext } from "./contexts/ChatContext";
+import io from "socket.io-client";
 
 function App() {
   const [moveChar, setMoveChar] = useState("");
@@ -27,6 +28,12 @@ function App() {
     player_item_id: "",
     inventory: [],
   });
+
+  useEffect(() => {
+    const socket = io("https://recyclenauts.herokuapp.com/");
+    socket.on("player", (players) => setRoom({ players, ...room }));
+  }, []);
+
   return (
     <MoveRoomContext.Provider value={{ room, setRoom }}>
       <MoveCharContext.Provider value={{ moveChar, setMoveChar }}>
