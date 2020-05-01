@@ -45,7 +45,7 @@ function App() {
     if (!loggedIn) {
       socket.emit("logout", room.username);
     }
-  }, [loggedIn]);
+  }, []);
 
   return (
     <LoggedInContext.Provider value={{ loggedIn, setLoggedIn }}>
