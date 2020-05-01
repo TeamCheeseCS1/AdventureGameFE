@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { MoveRoomContext } from "../../contexts/MoveRoomContext";
 // import { Spinner } from "reactstrap";
 import {
   LoginWrapper,
@@ -16,6 +17,7 @@ function Login(props) {
   const [visibleWarning, setWarning] = useState(false);
   const [error, setError] = useState({ username: "", password1: "" });
   const [spinner, setSpin] = useState(false);
+  const { room, setRoom } = useContext(MoveRoomContext);
 
   const handleChanges = (e) => {
     e.preventDefault();
@@ -57,7 +59,16 @@ function Login(props) {
       axiosWithAuth()
         .post("/login/", loginState)
         .then((res) => {
+          console.log(res.data);
           localStorage.setItem("key", res.data.key);
+          setRoom({
+            username: res.data.username,
+            // location: res.data.title,
+            id: res.data.location_room_id,
+            // description: res.data.description,
+            players: res.data.players,
+            // items: ["dusty can", "bloody shotgun"],
+          });
           props.history.push("/play");
         })
         .catch((err) => {

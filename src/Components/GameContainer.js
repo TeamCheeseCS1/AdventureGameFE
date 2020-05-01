@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { GameCont, User } from "../Styles/formStyle.module.scss";
-import axiosWithAuth from "../Middleware/axiosWithAuth";
 import Pusher from "pusher-js";
 import { ChatContext } from "../contexts/ChatContext";
+import { MoveRoomContext } from "../contexts/MoveRoomContext";
 
 import NavBar from "./NavBar";
 import Controls from "./HUD/Controls";
@@ -13,13 +13,7 @@ import Map from "./Map";
 
 const GameContainer = (props) => {
   const { chat, setChat } = useContext(ChatContext);
-  const [initRoom, setInitRoom] = useState({
-    username: "",
-    location: "",
-    description: "",
-    players: [],
-    items: [],
-  });
+  const { room } = useContext(MoveRoomContext);
 
   const pusher = new Pusher("a85348ba3aac64a15fbd", {
     cluster: "us2",
@@ -32,41 +26,15 @@ const GameContainer = (props) => {
     message: chat.text,
   };
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get("/adv/init/")
-      .then((res) => {
-        // console.log(res.data);
-        setInitRoom({
-          username: res.data.name,
-          location: res.data.title,
-          description: res.data.description,
-          players: res.data.players,
-          items: ["dusty can", "bloody shotgun"],
-        });
-      })
-      .catch((error) => error.message);
-  }, [setInitRoom]);
-
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .post("/adv/push/", payload)
-  //     .then((res) => {
-  //       // console.log(res.data);
-  //     })
-  //     .catch((error) => error.message);
-  // }, [chat]);
-
-  // console.log(initRoom);
   return (
     <div>
       <NavBar props={props} />
       <div className={GameCont}>
         <Map />
-        <RoomInfo initRoom={initRoom} />
+        <RoomInfo />
         <Chat />
         <PusherFeed />
-        <div className={User}>{initRoom.username}</div>
+        <div className={User}>{room.username && room.username}</div>
         <Controls />
       </div>
     </div>
