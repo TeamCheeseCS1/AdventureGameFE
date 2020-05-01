@@ -26,24 +26,24 @@ const Controls = () => {
   const { room, setRoom } = useContext(MoveRoomContext);
 
   //handle direction actions
+  console.log("room", room);
 
   const handleMove = (e, d) => {
     e.preventDefault();
     setMoveChar(d);
     const move = { username: room.username, direction: d };
-    console.log(move);
     axiosWithAuth()
       .post("/adv/move/", move)
       .then((res) => {
         // console.log(res.data);
         setRoom({
-          username: room.username,
+          ...room,
           location: res.data.title,
           description: res.data.description,
           players: res.data.players,
-          items: ["dusty can", "bloody shotgun"],
+          items: res.data.items,
           error_msg: res.data.error_msg,
-          nsew: [true, true, false, true],
+          nsew: res.data.nsew,
         });
       })
       .catch(
@@ -62,14 +62,16 @@ const Controls = () => {
 
   //handle give, take and Store actions
 
-  const handleTake = (e) => {
+  const handleTake = (e, item) => {
     e.preventDefault();
     const take = { item_name: e.target.innerText, username: room.username };
     axiosWithAuth()
       .post("/adv/take/", take)
       .then((res) => {
+        console.log(res.data);
         setRoom({
           ...room,
+          items: room.items.filter((it) => it !== item),
           inventory: [...room.inventory, res.data],
           error_msg: `fucking ${room.username} picked up a fucking ${take.item_name}`,
         });
@@ -80,16 +82,17 @@ const Controls = () => {
 
   const handleDrop = (e, item) => {
     e.preventDefault();
-    const drop = { player_item_id: room.player_item_id };
+    const drop = { player_item_id: item.player_item_id };
     axiosWithAuth()
       .post("/adv/drop/", drop)
       .then((res) => {
         setRoom({
           ...room,
+          items: [...room.items, item.item],
           inventory: room.inventory.filter(
             (it) => it.player_item_id !== item.player_item_id
           ),
-          error_msg: `fucking ${room.username} dropped a fucking ${drop.item_name}`,
+          error_msg: `fucking ${room.username} dropped a fucking ${item.item}`,
         });
         // console.log("take responsible");
       })
@@ -129,9 +132,10 @@ const Controls = () => {
         <UncontrolledPopover trigger="legacy" placement="top" target="pickUp">
           <PopoverHeader className={PopUpHeader}>pick up item</PopoverHeader>
           <PopoverBody className={PopUpBody}>
-            {room.items.map((item) => (
-              <button onClick={handleTake}>{item}</button>
-            ))}
+            {room.items &&
+              room.items.map((item) => (
+                <button onClick={(e) => handleTake(e, item)}>{item}</button>
+              ))}
           </PopoverBody>
         </UncontrolledPopover>
         <button id="dropItem">
@@ -143,9 +147,12 @@ const Controls = () => {
         <UncontrolledPopover trigger="legacy" placement="top" target="dropItem">
           <PopoverHeader className={PopUpHeader}>drop item</PopoverHeader>
           <PopoverBody className={PopUpBody}>
-            {room.items.map((item) => (
-              <button onClick={(e) => handleDrop(e, item)}>{item}</button>
-            ))}
+            {room.inventory &&
+              room.inventory.map((item) => (
+                <button key={item.id} onClick={(e) => handleDrop(e, item)}>
+                  {item.item}
+                </button>
+              ))}
           </PopoverBody>
         </UncontrolledPopover>
         <button onClick={(e) => handleMove(e, "w")}>
@@ -182,15 +189,17 @@ const Controls = () => {
           <PopoverHeader className={PopUpHeader}>item shop</PopoverHeader>
           <PopoverBody className={PopUpBody}>
             <div>buy</div>
-            {room.inventory.map((item) => (
-              // <button>{item}</button>
-              <button>{item}</button>
-            ))}
+            {room.inventory &&
+              room.inventory.map((item) => (
+                // <button>{item}</button>
+                <button>{item}</button>
+              ))}
             <div>sell</div>
-            {room.inventory.map((item) => (
-              // <button>{item}</button>
-              <button onClick={(e) => handleDrop(e, item)}>{item}</button>
-            ))}
+            {room.inventory &&
+              room.inventory.map((item) => (
+                // <button>{item}</button>
+                <button onClick={(e) => handleDrop(e, item)}>{item}</button>
+              ))}
           </PopoverBody>
         </UncontrolledPopover>
       </div>

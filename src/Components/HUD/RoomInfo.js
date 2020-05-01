@@ -23,9 +23,9 @@ const RoomInfo = () => {
           <div>
             <div className={ItemsTitle}>items</div>
             <div className={ItemCont}>
-              {/* {room.items.map((item) => (
+              {room.items.map((item) => (
                 <p>{item}</p>
-              ))} */}
+              ))}
             </div>
           </div>
           <div>

@@ -59,16 +59,16 @@ function Login(props) {
       axiosWithAuth()
         .post("/login/", loginState)
         .then((res) => {
-          console.log(res.data);
           localStorage.setItem("key", res.data.key);
           setRoom({
             username: res.data.username,
-            location: res.data.location,
+            location: res.data.title,
             id: res.data.location_room_id,
-            description: res.data.description,
+            description: res.data.room_description,
             players: res.data.players,
             items: res.data.items,
-            nsew: [true, true, false, true],
+            nsew: res.data.nsew,
+            inventory: [],
           });
           props.history.push("/play");
         })
