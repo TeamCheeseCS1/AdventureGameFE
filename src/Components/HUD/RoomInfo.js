@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MoveRoomContext } from "../../contexts/MoveRoomContext";
+import { PlayersContext } from "../../contexts/PlayersContext";
 import {
   RoomInfoStyles,
   RoomInfoDiv,
@@ -12,6 +13,7 @@ import {
 
 const RoomInfo = () => {
   const { room } = useContext(MoveRoomContext);
+  const { players } = useContext(PlayersContext);
 
   return (
     <div className={RoomInfoStyles}>
@@ -31,7 +33,7 @@ const RoomInfo = () => {
           <div>
             <div className={RoomTitles}>players</div>
             <div className={PlayerCont}>
-              {room.players && room.players.map((player) => <p>{player}</p>)}
+              {players && players.map((player) => <p>{player}</p>)}
             </div>
           </div>
         </div>
