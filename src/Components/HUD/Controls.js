@@ -72,7 +72,7 @@ const Controls = () => {
           ...room,
           items: room.items.filter((it) => it !== item),
           inventory: [...room.inventory, res.data],
-          error_msg: `fucking ${room.username} picked up a fucking ${take.item_name}`,
+          error_msg: `${room.username} picked up a ${take.item_name}`,
         });
         // console.log("take responsible");
       })
@@ -91,7 +91,7 @@ const Controls = () => {
           inventory: room.inventory.filter(
             (it) => it.player_item_id !== item.player_item_id
           ),
-          error_msg: `fucking ${room.username} dropped a fucking ${item.item}`,
+          error_msg: `${room.username} dropped a ${item.item}`,
         });
         // console.log("take responsible");
       })

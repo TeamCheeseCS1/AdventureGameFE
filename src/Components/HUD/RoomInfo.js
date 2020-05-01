@@ -15,8 +15,6 @@ const RoomInfo = () => {
   const { room } = useContext(MoveRoomContext);
   const { players } = useContext(PlayersContext);
 
-  console.log(players);
-
   return (
     <div className={RoomInfoStyles}>
       <div>room info</div>
