@@ -9,9 +9,11 @@ import Landing from "./Components/Landing";
 import { MoveCharContext } from "./contexts/MoveCharContext";
 import { MoveRoomContext } from "./contexts/MoveRoomContext";
 import { ChatContext } from "./contexts/ChatContext";
+import { PlayersContext } from "./contexts/PlayersContext";
 import io from "socket.io-client";
 
 function App() {
+  const [players, setPlayers] = useState([]);
   const [moveChar, setMoveChar] = useState("");
   const [chat, setChat] = useState({
     text: "",
@@ -33,22 +35,24 @@ function App() {
     const socket = io("https://trashhero.herokuapp.com/", {
       transports: ["websocket", "polling"],
     });
-    socket.on("player", (players) => setRoom({ players, ...room }));
+    socket.on("player", (p) => setPlayers(p));
   }, [room]);
 
   return (
-    <MoveRoomContext.Provider value={{ room, setRoom }}>
-      <MoveCharContext.Provider value={{ moveChar, setMoveChar }}>
-        <ChatContext.Provider value={{ chat, setChat }}>
-          <div className="App">
-            <Route exact path="/" component={Landing} />
-            <Route path="/login" component={Login} />
-            <Route path="/registration" component={Registration} />
-            <PrivateRoute path="/play" component={GameContainer} />
-          </div>
-        </ChatContext.Provider>
-      </MoveCharContext.Provider>
-    </MoveRoomContext.Provider>
+    <PlayersContext.Provider value={{ players, setPlayers }}>
+      <MoveRoomContext.Provider value={{ room, setRoom }}>
+        <MoveCharContext.Provider value={{ moveChar, setMoveChar }}>
+          <ChatContext.Provider value={{ chat, setChat }}>
+            <div className="App">
+              <Route exact path="/" component={Landing} />
+              <Route path="/login" component={Login} />
+              <Route path="/registration" component={Registration} />
+              <PrivateRoute path="/play" component={GameContainer} />
+            </div>
+          </ChatContext.Provider>
+        </MoveCharContext.Provider>
+      </MoveRoomContext.Provider>
+    </PlayersContext.Provider>
   );
 }
 
