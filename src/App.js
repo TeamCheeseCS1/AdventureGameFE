@@ -30,7 +30,7 @@ function App() {
   });
 
   useEffect(() => {
-    const socket = io("https://recyclenauts.herokuapp.com/");
+    const socket = io("https://trashhero.herokuapp.com/");
     socket.on("player", (players) => setRoom({ players, ...room }));
   }, []);
 
