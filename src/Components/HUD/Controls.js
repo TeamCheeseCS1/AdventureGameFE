@@ -192,13 +192,13 @@ const Controls = () => {
             {room.inventory &&
               room.inventory.map((item) => (
                 // <button>{item}</button>
-                <button>{item}</button>
+                <button>{item.item}</button>
               ))}
             <div>sell</div>
             {room.inventory &&
               room.inventory.map((item) => (
                 // <button>{item}</button>
-                <button onClick={(e) => handleDrop(e, item)}>{item}</button>
+                <button>{item.item}</button>
               ))}
           </PopoverBody>
         </UncontrolledPopover>
